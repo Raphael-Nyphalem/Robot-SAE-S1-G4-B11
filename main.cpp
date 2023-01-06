@@ -29,6 +29,15 @@ void moteurGauche()
     //gere les impulsions de commande du moteur Gauche
 }
 
+void gestionVitesseD()
+{
+
+}
+
+void gestionVitesseG()
+{
+
+}
 //F2 Détection des capteurs
 
 void detectionCaptDroit()
@@ -88,18 +97,19 @@ void suiviLigne()
     //Permet au robot de suivre une ligne avec des virages
 }
 
-//Scénar 2
-void demiTour()
-{
-    //Permet au robot de faire demi-tour une fois arrivé en bout de ligne
-}
-
 //Scénar 3
-void choixIntersection()
+void Final()
 {
-    //Permet à l'utilisateur de définir une direction à emprunter une fois arrivé à une intersection
+
 }
 
+//Scénar 3.1
+
+//Scénar 3.2
+
+//Scénar 3.3
+
+//Scénar 3.4
 
 
 
@@ -107,6 +117,6 @@ void choixIntersection()
 
 int main(int argc, char const *argv[])
 {
-    /* code */
+    //selectionneur de scénario (mode)
     return 0;
 }
