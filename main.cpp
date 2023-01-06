@@ -111,7 +111,6 @@ void suiviLigneCourbe()
 void scenEntrepot()
 {
     cout << "Scénario Entrepôt" <<endl;
-=======
 }
 
 
