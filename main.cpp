@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <chrono>
 #include <thread>
-#include <sensehat.h>
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
@@ -68,9 +67,17 @@ void affichagePuissance()
 
 //F7 Gestion Démarrage / Arrêt
 
-void demarrer()
+int demarrer(int debuter)
 {
     //Démarre le robot (si cette fonction n'est pas appelée, le robot ne fait rien)
+    int debut;
+
+    do
+    {
+        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" << "-1 pour le suivi de ligne droite"<< endl << "\t" << "-2 pour le suivi de ligne avec courbes"<< endl << "\t" << "-3 pour le robot d'entrepôt"<< endl;
+        cin>> debut;        
+    }while(debut < 0 || debut >3);
+    return debut;
 }
 
 void arretProgressif()
@@ -89,19 +96,25 @@ void arretUrgence()
 void ligneDroite()
 {
     //Permet au robot d'avancer en ligne droite
+    cout << "Scénario ligne droite" <<endl;
 }
 
 //Scénar 1
-void suiviLigne()
+void suiviLigneCourbe()
 {
     //Permet au robot de suivre une ligne avec des virages
+
+    cout << "Scénario ligne courbe" <<endl;
 }
 
 //Scénar 3
-void Final()
+void scenEntrepot()
 {
-
+    cout << "Scénario Entrepôt" <<endl;
+=======
 }
+
+
 
 //Scénar 3.1
 
@@ -117,6 +130,25 @@ void Final()
 
 int main(int argc, char const *argv[])
 {
+
+    int debuter;
+    
     //selectionneur de scénario (mode)
+    debuter = demarrer(debuter);
+    
+    if (debuter ==1)
+    {
+        ligneDroite();
+    }
+    else  if (debuter ==2)
+    {
+        suiviLigneCourbe();
+    }
+    else if (debuter ==3)
+    {
+        scenEntrepot();
+    }
+
+
     return 0;
 }
