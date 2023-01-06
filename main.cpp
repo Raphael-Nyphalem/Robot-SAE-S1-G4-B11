@@ -129,7 +129,20 @@ int main(int argc, char const *argv[])
     int debuter;
     
     //selectionneur de scénario (mode)
-    demarrer(debuter);
+    debuter = demarrer(debuter);
+    
+    if (debuter ==1)
+    {
+        ligneDroite();
+    }
+    else  if (debuter ==2)
+    {
+        suiviLigneCourbe();
+    }
+    else if (debuter ==3)
+    {
+        scenEntrepot();
+    }
 
 
     return 0;
