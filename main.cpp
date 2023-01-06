@@ -1,3 +1,19 @@
+/* File: main.cpp
+ * Author: Timothée Burgmeier & Raphaël Louis Le Denmat
+ * Source: https://github.com/Raphael-Nyphalem/Robot-SAE-S1-G4-B11
+ *
+ *Ce programme à pour but de permettre le fonctionnement de la base roulante mobile selon trois différents scénarios
+ *
+ * Scénarios : 
+ * 
+ * Scénario 1 --> Suivi ligne droite
+ * 
+ * Scénario 2 --> Suivi ligne courbe
+ * 
+ * Scénario 3 --> Le robot opère tel un robot d'entrepôt, allant récupérer des objets dans une zone pour les retransmettre dans une autre zone
+ * 
+ */
+
 #include <iostream>
 #include <iomanip>
 #include <chrono>
@@ -55,7 +71,7 @@ void detectionCaptGauche()
 //F4 Gestion d'affichage
 void affichagePuissance()
 {
-    //Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical)ainsi que la répartition de puissance entre les deux moteurs (horizontal)
+    //Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical) ainsi que la répartition de puissance entre les deux moteurs (horizontal)
 }
 
 
