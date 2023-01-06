@@ -103,6 +103,7 @@ void ligneDroite()
 void suiviLigneCourbe()
 {
     //Permet au robot de suivre une ligne avec des virages
+
     cout << "Scénario ligne courbe" <<endl;
 }
 
@@ -110,7 +111,10 @@ void suiviLigneCourbe()
 void scenEntrepot()
 {
     cout << "Scénario Entrepôt" <<endl;
+=======
 }
+
+
 
 //Scénar 3.1
 
@@ -126,6 +130,7 @@ void scenEntrepot()
 
 int main(int argc, char const *argv[])
 {
+
     int debuter;
     
     //selectionneur de scénario (mode)
