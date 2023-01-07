@@ -71,7 +71,10 @@ void detectionCaptGauche()
 //F4 Gestion d'affichage
 void affichagePuissance()
 {
-    //Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical) ainsi que la répartition de puissance entre les deux moteurs (horizontal)
+    /*Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical)
+     ainsi que la répartition de puissance entre les deux moteurs (horizontal)
+
+*/
 }
 
 
@@ -90,7 +93,10 @@ int demarrer(int debuter)
 
     do
     {
-        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" << "-1 pour le suivi de ligne droite"<< endl << "\t" << "-2 pour le suivi de ligne avec courbes"<< endl << "\t" << "-3 pour le robot d'entrepôt"<< endl;
+        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
+            << "-1 pour le suivi de ligne droite"<< endl << "\t" 
+            << "-2 pour le suivi de ligne avec courbes"<< endl << "\t" 
+            << "-3 pour le robot d'entrepôt"<< endl;
         cin>> debut;        
     }while(debut < 0 || debut >3);
     return debut;
@@ -151,19 +157,17 @@ int main(int argc, char const *argv[])
     //selectionneur de scénario (mode)
     debuter = demarrer(debuter);
     
-    if (debuter ==1)
-    {
-        ligneDroite();
+    switch (debuter) {
+        case 1 :
+            ligneDroite();
+            break;
+        case 2:
+            suiviLigneCourbe();
+            break;
+        case 3:
+            scenEntrepot();
+            break;
     }
-    else  if (debuter ==2)
-    {
-        suiviLigneCourbe();
-    }
-    else if (debuter ==3)
-    {
-        scenEntrepot();
-    }
-
 
     return 0;
 }
