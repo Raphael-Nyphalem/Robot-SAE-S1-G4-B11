@@ -93,7 +93,7 @@ int demarrer(int debuter)
 
     do
     {
-        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " < endl << "\t" 
+        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
             << "-1 pour le suivi de ligne droite"<< endl << "\t" 
             << "-2 pour le suivi de ligne avec courbes"<< endl << "\t" 
             << "-3 pour le robot d'entrepôt"<< endl;
