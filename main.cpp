@@ -32,7 +32,13 @@ const int MAX_AFFICHE_Y = 8;
 
 //FONCTIONS
 
+
 //F1 Gestion des moteurs
+void controleMoteur()
+{
+    //
+}
+
 void moteurDroit()
 {
     //gere les impulsions de commande du moteur Gauche
