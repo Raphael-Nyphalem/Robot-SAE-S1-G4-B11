@@ -18,17 +18,15 @@
 #include <iomanip>
 #include <chrono>
 #include <thread>
+#include <sensehat.h>
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
 
 
-
-
-
 const int MAX_AFFICHE_X = 8;
 const int MAX_AFFICHE_Y = 8;
-
+const int DEGRE_ANGLE_LIB = 5;
 
 //FONCTIONS
 
@@ -38,7 +36,9 @@ void gestion_mot_Droit(int puissance)
 {
     /*
     gere les impulsions de commande du moteur Droit 
-    en fonction d'une puissance en %
+    en fonction d'une puissance en % (0 a 100)
+    utilise
+        gpio raspberry
     */
 }
 
@@ -46,7 +46,8 @@ void gestion_mot_Gauche(int puissance)
 {
     /*
     gere les impulsions de commande du moteur Gauche 
-    en fonction d'une puissance en %
+    en fonction d'une puissance en % (0 a 100)
+        gpio raspberry
     */
 }
 
@@ -73,39 +74,65 @@ void avance_vit(int vit)
     utilise
         - avance_Vitesse_Droit
         - avance_Vitesse_Gauche
+        - detect_angle
+        - correction_angle
     */   
 }
 
 void stop_Mot_Gauche()
 {
-    //
+    /*
+    arret du moteur Gauche
+    utilise 
+        - gestion_mot_Gauche
+    */
 }
 
 void stop_Mot_Droit()
 {
-    //
+    /*
+    arret du moteur Gauche
+    utilise 
+        - gestion_mot_Gauche
+    */
 }
 
 
 //F2 Détection des capteurs
 bool detec_Capt_Droit()
 {
+    /*
+    Renvois Vrais si le capteur Droit detecte une bande noir
+    utilise
+        gpio raspberry
+    */
     bool detect;
-    //Renvois Vrais si le capteur Droit detecte une bande noir
-    return detect;//bool
+    //code
+    return detect;
 }
 
 bool detec_Capt_Gauche()
 {
-    //Renvois Vrais si le capteur Gauche detecte une bande noir
+    /*
+    Renvois Vrais si le capteur Gauche detecte une bande noir
+    utilise
+        gpio raspberry
+    */
     bool detect;
+    //code
     return detect;
 }
 
 bool detec_2_Capt()
 {
-    //Renvois Vrais si les deuc capteurs detecte une bande noir
+    /*
+    Renvois Vrais si les 2 capteurs detecte une bande noir
+    utilise
+        - detec_Capt_Gauche
+        - detec_Capt_Droit
+    */
     bool detect;
+    //code
     return detect;
 }
 
@@ -119,7 +146,9 @@ void avance_dis(int dis,int vit)
         - detect_temp
         - stop
     */
+
 }
+
 void avance_valon(int dis,int vit)
 {
     /*
@@ -177,152 +206,318 @@ void stop()
 
 
 //F4 Gestion d'affichage 
-// ATENTION les input ne sont pas encore fais
+//ATTENTION les inputs ne sont pas encore fais
 void affich_Puissance_mot()
 {
     /*
     Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical)
-     ainsi que la répartition de puissance entre les deux moteurs (horizontal)
+    utilise
+        <sensehat.h>
     */
 }
 
 void affich_repart_puissance()
 {
-    //
+    /*
+    Affiche la répartition de puissance entre les deux moteurs (horizontalement)
+    utilise
+        <sensehat.h>
+    */
 }
 
 void affich_perdu()
 {
-    //
+    /*
+    Affiche le message si le robot est perdu
+    utilise
+        <sensehat.h>
+    */
 }
 
 void affich_chargement()
 {
-    //
+    /*
+    Affiche l'object qui est charger
+    utilise
+        <sensehat.h>
+    */
 }
 
 void affich_direction()
 {
-    //
+    /*
+    Affiche le prochain itineraire du robot
+    utilise
+        <sensehat.h>
+    */
 }
 
 
 //F5 Gestion du Joystick
 bool detect_HAUT()
 {
-    //
+    /*
+    detect si on met le joystick vers le haut
+    utilise
+        <sensehat.h>
+    */
     bool detect;
+    //code
     return detect;
 }
 
 bool detect_BAS()
 {
-    //
+    /*
+    detect si on met le joystick vers le bas
+    utilise
+        <sensehat.h>
+    */
     bool detect;
+    //code
     return detect;
 }
 
 bool detect_Droite()
 {
-    //  
+    /*
+    detect si on met le joystick vers la droite
+    utilise
+        <sensehat.h>
+    */
     bool detect;
+    //code
     return detect;
 }
 
 bool detect_Gauche()
 {
-    //  
+    /*
+    detect si on met le joystick vers la gauche
+    utilise
+        <sensehat.h>
+    */ 
     bool detect;
+    //code
     return detect; 
 }
 
 bool detect_Bouton()
 {
-    //   
+    /*
+    detect si on appuit sur le joystick
+    utilise
+        <sensehat.h>
+    */ 
     bool detect;
+    //code
     return detect; 
 }
 
+
 //F6 Gestion du Clavier
 char clavier()
-{
+{   
+    /*
+    recupère les inputs clavier
+    INPUT ET OUTPUT PAS ENCORE DEFINITIF
+    utilise
+    */
     char clv;
+    //code
     return clv;
 }
 
 bool detect_clavier(size_t touche)
 {
+    /*
+    detecte un input clavier 
+    utilise
+        clavier
+    */
     bool detect;
+    //code
     return detect;
 }
+
 
 //F7 timeur
 bool detect_temp(int time_x, int time_init)
 {
+    /*
+    detecte lorsque le temps passe au dessus du temps time_init + time_x
+    Time_x la difference de temps que l'on souhaite utilise
+    utilise
+        <clavierchrono>
+    */
     bool detect;
+    //code
     return detect;
 }
 
+
 //F8 gestion Boussole
+int get_angle()
+{
+    /*
+    Permet d'optenir l'angle actuel de la boussole
+    utilise
+        <sensehat.h>
+    */
+    int angle;
+    //code
+    return angle;
+}
+
 bool detect_angle(int angle)
 {
+    /*
+    detecte si on est dans la plage de l'angle donnez
+    par plage je veux dire l'angle a + ou - un degré d'angle donner par la constante DEGRE_ANGLE_LIB
+    utilise
+        get_angle
+    */
     bool detect;
+    //code
     return detect;
 }
+
 
 //F9 Autre
 void perdu()
 {
+    /*
+    detecte si on est dans la plage de l'angle donnez
+    par plage je veux dire l'angle a + ou - un degré d'angle donner par la constante DEGRE_ANGLE_LIB
+    utilise
+        - stop
+        - affich_perdu
+    */
 
 }
 
-int temps_1m()
+int temps_dis(int dis, int vit)
 {
-    //
+    /*
+    permet de calculer le temps sur une distance donnez a un "vitesse" donnez
+    permet ainci de calculer la vitesse en cm/s
+    utilise
+        - avance_valon
+        - <chrono>
+    */
     int time;
+    //code
     return time;
 }
 
-void secur(int timemax)
+void securiter(int timemax,int time_init)
 {
-
+    /*
+    Arrete le robot si il met trop de temps a passer une étape
+    utilise
+        - perdu
+        - <chrono>
+    */
 }
+
+void correction_angle(int angle,int vit)
+{
+    /*
+    corrige l'angle en fonction a quelle point il est deporte de sa direction
+    utilise
+        - avance_Vitesse_Droit
+        - avance_Vitesse_Gauche
+        - get_angle
+        - detect_angle
+    */
+}
+
+
 
 //F10 Trajet
 
 void base_chargement()
 {
-    //
+    /*
+    Décrit le chemin de la base du robot pour recharger sa batterie a la zone de chargement de la marchandise
+    utilise 
+        - avance_valon
+        - tourne_valon
+        - affich_direction
+        - stop
+    */
 }
 
 void chargement_A()
 {
-    //
+    /*
+    Décrit le chemin de la zone de chargement de la marchandise au point A
+    utilise 
+        - avance_valon
+        - tourne_valon
+        - affich_direction
+        - stop
+    */
 }
 
 void chargement_B()
 {
-    //
+    /*
+    Décrit le chemin de la zone de chargement de la marchandise au point B
+    utilise 
+        - avance_valon
+        - tourne_valon
+        - affich_direction
+        - stop
+    */
 }
 
 void A_chargement()
 {
-    //
+    /*
+    Décrit le chemin du point A j'usqu'a la zone de chargement de la marchandise 
+    utilise 
+        - avance_valon
+        - tourne_valon
+        - affich_direction
+        - stop
+    */
 }
 
 void B_chargement()
 {
-    //
+    /*
+    Décrit le chemin du point B j'usqu'a la zone de chargement de la marchandise 
+    utilise 
+        - avance_valon
+        - tourne_valon
+        - affich_direction
+        - stop
+    */
 }
 
 void A_base()
 {
-    //
+    /*
+    Décrit le chemin du point A j'usqu'a la base 
+    utilise 
+        - avance_valon
+        - tourne_valon
+        - affich_direction
+        - stop
+    */
 }
 
 void B_base()
 {
-    //
+    /*
+    Décrit le chemin du point B j'usqu'a la base 
+    utilise 
+        - avance_valon
+        - tourne_valon
+        - affich_direction
+        - stop
+    */
 }
 
 //SCENARIOS
