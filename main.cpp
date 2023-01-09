@@ -34,90 +34,296 @@ const int MAX_AFFICHE_Y = 8;
 
 
 //F1 Gestion des moteurs
-void controleMoteur()
+void gestion_mot_Droit(int puissance)
+{
+    /*
+    gere les impulsions de commande du moteur Droit 
+    en fonction d'une puissance en %
+    */
+}
+
+void gestion_mot_Gauche(int puissance)
+{
+    /*
+    gere les impulsions de commande du moteur Gauche 
+    en fonction d'une puissance en %
+    */
+}
+
+void avance_Vitesse_Droit(int vit)
+{
+    /*
+    utilise 
+        - gestion_mot_Droit
+    */
+
+}
+
+void avance_Vitesse_Gauche(int vit)
+{
+    /*
+    utilise 
+        - gestion_mot_Gauche
+    */
+}
+
+void avance_vit(int vit)
+{
+    /*
+    utilise
+        - avance_Vitesse_Droit
+        - avance_Vitesse_Gauche
+    */   
+}
+
+void stop_Mot_Gauche()
 {
     //
 }
 
-void moteurDroit()
+void stop_Mot_Droit()
 {
-    //gere les impulsions de commande du moteur Gauche
-
+    //
 }
 
-void moteurGauche()
-{
-    //gere les impulsions de commande du moteur Gauche
-}
 
-void gestionVitesseD()
-{
-
-}
-
-void gestionVitesseG()
-{
-
-}
 //F2 Détection des capteurs
-
-void detectionCaptDroit()
+bool detec_Capt_Droit()
 {
-    //gère la détection d'une sortie de ligne
+    bool detect;
+    //Renvois Vrais si le capteur Droit detecte une bande noir
+    return detect;//bool
 }
 
-void detectionCaptGauche()
+bool detec_Capt_Gauche()
 {
-    //gère la détection d'une sortie de ligne
+    //Renvois Vrais si le capteur Gauche detecte une bande noir
+    bool detect;
+    return detect;
 }
 
-//F3 Contrôle de direction
-
-
-//F4 Gestion d'affichage
-void affichagePuissance()
+bool detec_2_Capt()
 {
-    /*Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical)
+    //Renvois Vrais si les deuc capteurs detecte une bande noir
+    bool detect;
+    return detect;
+}
+
+//F3 Contrôle de mouvement
+void avance_dis(int dis,int vit)
+{
+    /*
+    Avance tout droit d'une distance dis en cm a une vitesse vit
+    utilise
+        - avance_vit
+        - detect_temp
+        - stop
+    */
+}
+void avance_valon(int dis,int vit)
+{
+    /*
+    Avance tout droit d'une distance dis en cm a une vitesse vit
+    utilise
+        - avance_vit
+        - detec_2_Capt
+        - stop
+    */
+}
+
+void tourne(int angle)
+{
+    /*
+    Tourne d'une angle angle en degré 
+
+    utilise 
+        - stop
+        - avance_Vitesse_Droit
+        - avance_Vitesse_Gauche
+        - detect_angle
+    */
+}
+
+void demit_tour()
+{
+    /*
+    Permet de faire un demit tour donc revenir a sont point inital dans l'autre sens
+    utilise
+        - avance_dis
+        - tourne
+    */
+}
+
+void demit_tour_valon()
+{
+    /*
+    Permet de faire un demit tour donc revenir a sont point inital dans l'autre sens
+    utilise
+        - avance_dis
+        - tourne
+        - avance_valon
+    */
+}
+
+void stop()
+{
+    /*
+    Permet d'arreter le robot
+    utilise 
+        - stop_Mot_Droit 
+        - stop_Mot_Gauche
+    */
+}
+
+
+//F4 Gestion d'affichage 
+// ATENTION les input ne sont pas encore fais
+void affich_Puissance_mot()
+{
+    /*
+    Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical)
      ainsi que la répartition de puissance entre les deux moteurs (horizontal)
+    */
+}
 
-*/
+void affich_repart_puissance()
+{
+    //
+}
+
+void affich_perdu()
+{
+    //
+}
+
+void affich_chargement()
+{
+    //
+}
+
+void affich_direction()
+{
+    //
 }
 
 
 //F5 Gestion du Joystick
+bool detect_HAUT()
+{
+    //
+    bool detect;
+    return detect;
+}
 
+bool detect_BAS()
+{
+    //
+    bool detect;
+    return detect;
+}
+
+bool detect_Droite()
+{
+    //  
+    bool detect;
+    return detect;
+}
+
+bool detect_Gauche()
+{
+    //  
+    bool detect;
+    return detect; 
+}
+
+bool detect_Bouton()
+{
+    //   
+    bool detect;
+    return detect; 
+}
 
 //F6 Gestion du Clavier
-
-
-//F7 Gestion Démarrage / Arrêt
-
-int demarrer(int debuter)
+char clavier()
 {
-    //Démarre le robot (si cette fonction n'est pas appelée, le robot ne fait rien)
-    int debut;
-
-    do
-    {
-        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
-            << "-1 pour le suivi de ligne droite"<< endl << "\t" 
-            << "-2 pour le suivi de ligne avec courbes"<< endl << "\t" 
-            << "-3 pour le robot d'entrepôt"<< endl;
-        cin>> debut;        
-    }while(debut < 0 || debut >3);
-    return debut;
+    char clv;
+    return clv;
 }
 
-void arretProgressif()
+bool detect_clavier(size_t touche)
 {
-    //Arrête progressivement les moteurs du robot en abaissant leur puissance jusqu'à 0%
+    bool detect;
+    return detect;
 }
 
-void arretUrgence()
+//F7 timeur
+bool detect_temp(int time_x, int time_init)
 {
-    //Arrête les moteurs du robot instantanément
+    bool detect;
+    return detect;
 }
 
+//F8 gestion Boussole
+bool detect_angle(int angle)
+{
+    bool detect;
+    return detect;
+}
+
+//F9 Autre
+void perdu()
+{
+
+}
+
+int temps_1m()
+{
+    //
+    int time;
+    return time;
+}
+
+void secur(int timemax)
+{
+
+}
+
+//F10 Trajet
+
+void base_chargement()
+{
+    //
+}
+
+void chargement_A()
+{
+    //
+}
+
+void chargement_B()
+{
+    //
+}
+
+void A_chargement()
+{
+    //
+}
+
+void B_chargement()
+{
+    //
+}
+
+void A_base()
+{
+    //
+}
+
+void B_base()
+{
+    //
+}
 
 //SCENARIOS
 //Scénar 0
@@ -159,21 +365,35 @@ int main(int argc, char const *argv[])
 {
 
     int debuter;
-    
-    //selectionneur de scénario (mode)
-    debuter = demarrer(debuter);
-    
-    switch (debuter) {
-        case 1 :
-            ligneDroite();
-            break;
-        case 2:
-            suiviLigneCourbe();
-            break;
-        case 3:
-            scenEntrepot();
-            break;
-    }
+    bool end = false;
+
+    do
+    {
+        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
+            << "0 pour stop le programme"<< endl << "\t" 
+            << "1 pour le suivi de ligne droite"<< endl << "\t" 
+            << "2 pour le suivi de ligne avec courbes"<< endl << "\t" 
+            << "3 pour le robot d'entrepôt"<< endl;
+        cin>> debuter;        
+        
+        //selectionneur de scénario (mode)
+        
+        switch (debuter) {
+            case 1 :
+                ligneDroite();
+                break;
+            case 2:
+                suiviLigneCourbe();
+                break;
+            case 3:
+                scenEntrepot();
+                break;
+            case 0:
+                end = true;
+            default:
+                break;
+        }
+    }while(!end);
 
     return 0;
 }
