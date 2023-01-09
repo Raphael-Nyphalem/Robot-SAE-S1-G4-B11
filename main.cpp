@@ -36,28 +36,44 @@ const int MAX_AFFICHE_Y = 8;
 //F1 Gestion des moteurs
 void gestion_mot_Droit(int puissance)
 {
-    /*gere les impulsions de commande du moteur Droit 
-    en fonction d'une puuissanc en %
+    /*
+    gere les impulsions de commande du moteur Droit 
+    en fonction d'une puissance en %
     */
 }
 
-void gestion_mot_Gauche()
+void gestion_mot_Gauche(int puissance)
 {
-    /*gere les impulsions de commande du moteur Gauche 
-    en fonction d'une puuissanc en %
+    /*
+    gere les impulsions de commande du moteur Gauche 
+    en fonction d'une puissance en %
     */
 }
 
 void avance_Vitesse_Droit(int vit)
 {
     /*
+    utilise 
+        - gestion_mot_Droit
     */
 
 }
 
 void avance_Vitesse_Gauche(int vit)
 {
-    //
+    /*
+    utilise 
+        - gestion_mot_Gauche
+    */
+}
+
+void avance_vit(int vit)
+{
+    /*
+    utilise
+        - avance_Vitesse_Droit
+        - avance_Vitesse_Gauche
+    */   
 }
 
 void stop_Mot_Gauche()
@@ -70,8 +86,8 @@ void stop_Mot_Droit()
     //
 }
 
-//F2 Détection des capteurs
 
+//F2 Détection des capteurs
 bool detec_Capt_Droit()
 {
     bool detect;
@@ -94,37 +110,80 @@ bool detec_2_Capt()
 }
 
 //F3 Contrôle de mouvement
-
-void avance(int dis,int vit)
+void avance_dis(int dis,int vit)
 {
-    //Avance tout droit d'une distance dis en cm a une vitesse vit
+    /*
+    Avance tout droit d'une distance dis en cm a une vitesse vit
+    utilise
+        - avance_vit
+        - detect_temp
+        - stop
+    */
+}
+void avance_valon(int dis,int vit)
+{
+    /*
+    Avance tout droit d'une distance dis en cm a une vitesse vit
+    utilise
+        - avance_vit
+        - detec_2_Capt
+        - stop
+    */
 }
 
 void tourne(int angle)
 {
-    //Tourne d'une angle angle en degré 
+    /*
+    Tourne d'une angle angle en degré 
 
-    //utilise la fonction detect_angle de "gestion boussole"
+    utilise 
+        - stop
+        - avance_Vitesse_Droit
+        - avance_Vitesse_Gauche
+        - detect_angle
+    */
 }
 
 void demit_tour()
 {
-    //
+    /*
+    Permet de faire un demit tour donc revenir a sont point inital dans l'autre sens
+    utilise
+        - avance_dis
+        - tourne
+    */
+}
+
+void demit_tour_valon()
+{
+    /*
+    Permet de faire un demit tour donc revenir a sont point inital dans l'autre sens
+    utilise
+        - avance_dis
+        - tourne
+        - avance_valon
+    */
 }
 
 void stop()
 {
-    //
+    /*
+    Permet d'arreter le robot
+    utilise 
+        - stop_Mot_Droit 
+        - stop_Mot_Gauche
+    */
 }
 
 
-//F4 Gestion d'affichage
+//F4 Gestion d'affichage 
+// ATENTION les input ne sont pas encore fais
 void affich_Puissance_mot()
 {
-    /*Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical)
+    /*
+    Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical)
      ainsi que la répartition de puissance entre les deux moteurs (horizontal)
-
-*/
+    */
 }
 
 void affich_repart_puissance()
@@ -147,8 +206,8 @@ void affich_direction()
     //
 }
 
-//F5 Gestion du Joystick
 
+//F5 Gestion du Joystick
 bool detect_HAUT()
 {
     //
@@ -222,6 +281,11 @@ int temps_1m()
     //
     int time;
     return time;
+}
+
+void secur(int timemax)
+{
+
 }
 
 //F10 Trajet
