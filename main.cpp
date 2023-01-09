@@ -57,37 +57,40 @@ void avance_Vitesse_Droit(int vit)
 
 void avance_Vitesse_Gauche(int vit)
 {
-
+    //
 }
 
 void stop_Mot_Gauche()
 {
-
+    //
 }
 
 void stop_Mot_Droit()
 {
-    
+    //
 }
 
 //F2 Détection des capteurs
 
 bool detec_Capt_Droit()
 {
+    bool detect;
     //Renvois Vrais si le capteur Droit detecte une bande noir
-    return ;//bool
+    return detect;//bool
 }
 
 bool detec_Capt_Gauche()
 {
     //Renvois Vrais si le capteur Gauche detecte une bande noir
-    return ;//bool
+    bool detect;
+    return detect;
 }
 
 bool detec_2_Capt()
 {
     //Renvois Vrais si les deuc capteurs detecte une bande noir
-    return ;
+    bool detect;
+    return detect;
 }
 
 //F3 Contrôle de mouvement
@@ -106,12 +109,12 @@ void tourne(int angle)
 
 void demit_tour()
 {
-
+    //
 }
 
 void stop()
 {
-
+    //
 }
 
 
@@ -126,73 +129,86 @@ void affich_Puissance_mot()
 
 void affich_repart_puissance()
 {
-
+    //
 }
 
 void affich_perdu()
 {
-
+    //
 }
 
 void affich_chargement()
 {
-
+    //
 }
 
 void affich_direction()
 {
-
+    //
 }
 
 //F5 Gestion du Joystick
 
 bool detect_HAUT()
 {
-
+    //
+    bool detect;
+    return detect;
 }
 
 bool detect_BAS()
 {
-    
+    //
+    bool detect;
+    return detect;
 }
 
 bool detect_Droite()
 {
-    
+    //  
+    bool detect;
+    return detect;
 }
 
 bool detect_Gauche()
 {
-    
+    //  
+    bool detect;
+    return detect; 
 }
 
 bool detect_Bouton()
 {
-    
+    //   
+    bool detect;
+    return detect; 
 }
 
 //F6 Gestion du Clavier
-size_t clavier()
+char clavier()
 {
-
-    return;
+    char clv;
+    return clv;
 }
 
 bool detect_clavier(size_t touche)
 {
-
+    bool detect;
+    return detect;
 }
 
 //F7 timeur
 bool detect_temp(int time_x, int time_init)
 {
-
+    bool detect;
+    return detect;
 }
 
 //F8 gestion Boussole
 bool detect_angle(int angle)
 {
-
+    bool detect;
+    return detect;
 }
 
 //F9 Autre
@@ -203,44 +219,46 @@ void perdu()
 
 int temps_1m()
 {
-
+    //
+    int time;
+    return time;
 }
 
 //F10 Trajet
 
 void base_chargement()
 {
-
+    //
 }
 
 void chargement_A()
 {
-
+    //
 }
 
 void chargement_B()
 {
-
+    //
 }
 
 void A_chargement()
 {
-
+    //
 }
 
 void B_chargement()
 {
-
+    //
 }
 
 void A_base()
 {
-
+    //
 }
 
 void B_base()
 {
-
+    //
 }
 
 //SCENARIOS
