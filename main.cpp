@@ -34,48 +34,89 @@ const int MAX_AFFICHE_Y = 8;
 
 
 //F1 Gestion des moteurs
-void controleMoteur()
+void gestion_mot_Droit(int puissance)
 {
-    //
+    /*gere les impulsions de commande du moteur Droit 
+    en fonction d'une puuissanc en %
+    */
 }
 
-void moteurDroit()
+void gestion_mot_Gauche()
 {
-    //gere les impulsions de commande du moteur Gauche
+    /*gere les impulsions de commande du moteur Gauche 
+    en fonction d'une puuissanc en %
+    */
+}
+
+void avance_Vitesse_Droit(int vit)
+{
+    /*
+    */
 
 }
 
-void moteurGauche()
-{
-    //gere les impulsions de commande du moteur Gauche
-}
-
-void gestionVitesseD()
+void avance_Vitesse_Gauche(int vit)
 {
 
 }
 
-void gestionVitesseG()
+void stop_Mot_Gauche()
 {
 
 }
+
+void stop_Mot_Droit()
+{
+    
+}
+
 //F2 Détection des capteurs
 
-void detectionCaptDroit()
+bool detec_Capt_Droit()
 {
-    //gère la détection d'une sortie de ligne
+    //Renvois Vrais si le capteur Droit detecte une bande noir
+    return ;//bool
 }
 
-void detectionCaptGauche()
+bool detec_Capt_Gauche()
 {
-    //gère la détection d'une sortie de ligne
+    //Renvois Vrais si le capteur Gauche detecte une bande noir
+    return ;//bool
 }
 
-//F3 Contrôle de direction
+bool detec_2_Capt()
+{
+    //Renvois Vrais si les deuc capteurs detecte une bande noir
+    return ;
+}
+
+//F3 Contrôle de mouvement
+
+void avance(int dis,int vit)
+{
+    //Avance tout droit d'une distance dis en cm a une vitesse vit
+}
+
+void tourne(int angle)
+{
+    //Tourne d'une angle angle en degré 
+
+    //utilise la fonction detect_angle de "gestion boussole"
+}
+
+void demit_tour()
+{
+
+}
+
+void stop()
+{
+
+}
 
 
 //F4 Gestion d'affichage
-void affichagePuissance()
+void affich_Puissance_mot()
 {
     /*Affiche la puissance des moteurs gauche et droite sur l'afficheur LED (en vertical)
      ainsi que la répartition de puissance entre les deux moteurs (horizontal)
@@ -83,41 +124,124 @@ void affichagePuissance()
 */
 }
 
+void affich_repart_puissance()
+{
+
+}
+
+void affich_perdu()
+{
+
+}
+
+void affich_chargement()
+{
+
+}
+
+void affich_direction()
+{
+
+}
 
 //F5 Gestion du Joystick
 
+bool detect_HAUT()
+{
+
+}
+
+bool detect_BAS()
+{
+    
+}
+
+bool detect_Droite()
+{
+    
+}
+
+bool detect_Gauche()
+{
+    
+}
+
+bool detect_Bouton()
+{
+    
+}
 
 //F6 Gestion du Clavier
-
-
-//F7 Gestion Démarrage / Arrêt
-
-int demarrer(int debuter)
+size_t clavier()
 {
-    //Démarre le robot (si cette fonction n'est pas appelée, le robot ne fait rien)
-    int debut;
 
-    do
-    {
-        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
-            << "-1 pour le suivi de ligne droite"<< endl << "\t" 
-            << "-2 pour le suivi de ligne avec courbes"<< endl << "\t" 
-            << "-3 pour le robot d'entrepôt"<< endl;
-        cin>> debut;        
-    }while(debut < 0 || debut >3);
-    return debut;
+    return;
 }
 
-void arretProgressif()
+bool detect_clavier(size_t touche)
 {
-    //Arrête progressivement les moteurs du robot en abaissant leur puissance jusqu'à 0%
+
 }
 
-void arretUrgence()
+//F7 timeur
+bool detect_temp(int time_x, int time_init)
 {
-    //Arrête les moteurs du robot instantanément
+
 }
 
+//F8 gestion Boussole
+bool detect_angle(int angle)
+{
+
+}
+
+//F9 Autre
+void perdu()
+{
+
+}
+
+int temps_1m()
+{
+
+}
+
+//F10 Trajet
+
+void base_chargement()
+{
+
+}
+
+void chargement_A()
+{
+
+}
+
+void chargement_B()
+{
+
+}
+
+void A_chargement()
+{
+
+}
+
+void B_chargement()
+{
+
+}
+
+void A_base()
+{
+
+}
+
+void B_base()
+{
+
+}
 
 //SCENARIOS
 //Scénar 0
@@ -159,21 +283,35 @@ int main(int argc, char const *argv[])
 {
 
     int debuter;
-    
-    //selectionneur de scénario (mode)
-    debuter = demarrer(debuter);
-    
-    switch (debuter) {
-        case 1 :
-            ligneDroite();
-            break;
-        case 2:
-            suiviLigneCourbe();
-            break;
-        case 3:
-            scenEntrepot();
-            break;
-    }
+    bool end = false;
+
+    do
+    {
+        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
+            << "0 pour stop le programme"<< endl << "\t" 
+            << "1 pour le suivi de ligne droite"<< endl << "\t" 
+            << "2 pour le suivi de ligne avec courbes"<< endl << "\t" 
+            << "3 pour le robot d'entrepôt"<< endl;
+        cin>> debuter;        
+        
+        //selectionneur de scénario (mode)
+        
+        switch (debuter) {
+            case 1 :
+                ligneDroite();
+                break;
+            case 2:
+                suiviLigneCourbe();
+                break;
+            case 3:
+                scenEntrepot();
+                break;
+            case 0:
+                end = true;
+            default:
+                break;
+        }
+    }while(!end);
 
     return 0;
 }
