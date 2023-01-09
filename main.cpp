@@ -29,7 +29,7 @@ using namespace std::chrono; // system_clock, seconds, milliseconds
 
 const int MAX_AFFICHE_X = 8;
 const int MAX_AFFICHE_Y = 8;
-
+const int DEGRE_ANGLE_LIB = 5;
 
 //FONCTIONS
 
@@ -260,6 +260,8 @@ bool detect_HAUT()
 {
     /*
     detect si on met le joystick vers le haut
+    utilise
+        <sensehat.h>
     */
     bool detect;
     //code
@@ -270,6 +272,8 @@ bool detect_BAS()
 {
     /*
     detect si on met le joystick vers le bas
+    utilise
+        <sensehat.h>
     */
     bool detect;
     //code
@@ -278,7 +282,11 @@ bool detect_BAS()
 
 bool detect_Droite()
 {
-    //  
+    /*
+    detect si on met le joystick vers la droite
+    utilise
+        <sensehat.h>
+    */
     bool detect;
     //code
     return detect;
@@ -286,7 +294,11 @@ bool detect_Droite()
 
 bool detect_Gauche()
 {
-    //  
+    /*
+    detect si on met le joystick vers la gauche
+    utilise
+        <sensehat.h>
+    */ 
     bool detect;
     //code
     return detect; 
@@ -294,15 +306,25 @@ bool detect_Gauche()
 
 bool detect_Bouton()
 {
-    //   
+    /*
+    detect si on appuit sur le joystick
+    utilise
+        <sensehat.h>
+    */ 
     bool detect;
     //code
     return detect; 
 }
 
+
 //F6 Gestion du Clavier
 char clavier()
-{
+{   
+    /*
+    recupère les inputs clavier
+    INPUT ET OUTPUT PAS ENCORE DEFINITIF
+    utilise
+    */
     char clv;
     //code
     return clv;
@@ -310,22 +332,40 @@ char clavier()
 
 bool detect_clavier(size_t touche)
 {
+    /*
+    detecte un input clavier 
+    utilise
+        clavier
+    */
     bool detect;
     //code
     return detect;
 }
+
 
 //F7 timeur
 bool detect_temp(int time_x, int time_init)
 {
+    /*
+    detecte lorsque le temps passe au dessus du temps time_init + time_x
+    Time_x la difference de temps que l'on souhaite utilise
+    utilise
+        <clavierchrono>
+    */
     bool detect;
     //code
     return detect;
 }
 
+
 //F8 gestion Boussole
 int get_angle()
 {
+    /*
+    Permet d'optenir l'angle actuel de la boussole
+    utilise
+        <sensehat.h>
+    */
     int angle;
     //code
     return angle;
@@ -333,6 +373,12 @@ int get_angle()
 
 bool detect_angle(int angle)
 {
+    /*
+    detecte si on est dans la plage de l'angle donnez
+    par plage je veux dire l'angle a + ou - un degré d'angle donner par la constante DEGRE_ANGLE_LIB
+    utilise
+        get_angle
+    */
     bool detect;
     //code
     return detect;
@@ -342,20 +388,38 @@ bool detect_angle(int angle)
 //F9 Autre
 void perdu()
 {
+    /*
+    detecte si on est dans la plage de l'angle donnez
+    par plage je veux dire l'angle a + ou - un degré d'angle donner par la constante DEGRE_ANGLE_LIB
+    utilise
+        - stop
+        - affich_perdu
+    */
 
 }
 
-int temps_1m()
+int temps_dis(int dis, int vit)
 {
-    //
+    /*
+    permet de calculer le temps sur une distance donnez a un "vitesse" donnez
+    permet ainci de calculer la vitesse en cm/s
+    utilise
+        - avance_valon
+        - <chrono>
+    */
     int time;
     //code
     return time;
 }
 
-void secur(int timemax)
+void securiter(int timemax,int time_init)
 {
-
+    /*
+    Arrete le robot si il met trop de temps a passer une étape
+    utilise
+        - perdu
+        - <chrono>
+    */
 }
 
 void correction_angle(int angle,int vit)
