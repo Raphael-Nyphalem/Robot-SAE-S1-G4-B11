@@ -24,9 +24,6 @@ using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
 
 
-
-
-
 const int MAX_AFFICHE_X = 8;
 const int MAX_AFFICHE_Y = 8;
 const int DEGRE_ANGLE_LIB = 5;
@@ -151,6 +148,7 @@ void avance_dis(int dis,int vit)
     */
 
 }
+
 void avance_valon(int dis,int vit)
 {
     /*
@@ -208,7 +206,7 @@ void stop()
 
 
 //F4 Gestion d'affichage 
-// ATTENTION les inputs ne sont pas encore fais
+//ATTENTION les inputs ne sont pas encore fais
 void affich_Puissance_mot()
 {
     /*
