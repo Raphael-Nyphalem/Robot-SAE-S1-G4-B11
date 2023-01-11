@@ -23,6 +23,14 @@ using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
 
+const unsigned int PIN_CAPT_GAUCHE = 16;
+const unsigned int PIN_CAPT_DROIT= 17;
+
+const unsigned int CHAN_MOT_GAUCHE = 0;
+const unsigned int CHAN_MOT_DROIT= 1;
+
+const unsigned int PERIODE_MS = 50;
+
 
 const int MAX_AFFICHE_X = 8;
 const int MAX_AFFICHE_Y = 8;
@@ -32,7 +40,7 @@ const int DEGRE_ANGLE_LIB = 5;
 
 
 //F1 Gestion des moteurs
-void gestion_mot_Droit(int puissance)
+void gestion_mot_Droit(unsigned int puissance)
 {
     /*
     gere les impulsions de commande du moteur Droit 
@@ -40,6 +48,7 @@ void gestion_mot_Droit(int puissance)
     utilise
         gpio raspberry
     */
+   pwmDutyCycle(CHAN_MOT_DROIT,puissance)
 }
 
 void gestion_mot_Gauche(int puissance)
@@ -49,6 +58,7 @@ void gestion_mot_Gauche(int puissance)
     en fonction d'une puissance en % (0 a 100)
         gpio raspberry
     */
+   pwmDutyCycle(CHAN_MOT_GAUCHE,puissance)
 }
 
 void avance_Vitesse_Droit(int vit)
@@ -86,6 +96,7 @@ void stop_Mot_Gauche()
     utilise 
         - gestion_mot_Gauche
     */
+   pwmDutyCycle(CHAN_MOT_GAUCHE,0)
 }
 
 void stop_Mot_Droit()
@@ -95,6 +106,7 @@ void stop_Mot_Droit()
     utilise 
         - gestion_mot_Gauche
     */
+   pwmDutyCycle(CHAN_MOT_DROIT,0)
 }
 
 
@@ -559,6 +571,21 @@ void scenEntrepot()
 int main(int argc, char const *argv[])
 {
 
+    //init
+        gpioSetConfig(PIN_CAPT_GAUCHE , in);
+        gpioSetConfig(PIN_CAPT_DROIT, in);
+
+        pwmInit(CHAN_MOT_DROIT);
+        pwmPeriod(CHAN_MOT_DROIT, PERIODE_MS);
+        pwmDutyCycle(CHAN_MOT_DROIT,0);
+        pwmEnable(CHAN_MOT_DROIT);
+
+        pwmInit(CHAN_MOT_GAUCHE);
+        pwmPeriod(CHAN_MOT_GAUCHE, PERIODE_MS);
+        pwmDutyCycle(CHAN_MOT_GAUCHE,0);
+        pwmEnable(CHAN_MOT_GAUCHE);
+
+    //programme
     int debuter;
     bool end = false;
 
