@@ -23,24 +23,63 @@ using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
 
+//capteur 
 const unsigned int PIN_CAPT_GAUCHE = 16;
 const unsigned int PIN_CAPT_DROIT= 17;
 
+//moteur
 const unsigned int CHAN_MOT_GAUCHE = 0;
 const unsigned int CHAN_MOT_DROIT= 1;
 
 const unsigned int PERIODE_MS = 50;
 
-
+//ecrant
 const int MAX_AFFICHE_X = 8;
 const int MAX_AFFICHE_Y = 8;
-const int DEGRE_ANGLE_LIB = 5;
+
+//angle
+const int DEGRE_ANGLE_LIB = 5;//angle liberter que l'on donne pour la detection d'angle
 
 //FONCTIONS
+void correction_angle(int angle,int vit);
+int get_angle();
+bool detect_angle(int angle);
+
+//Vitesse
+const int VITESSE_0 = 0;
+const int VITESSE_1 = 25;
+const int VITESSE_2 = 50;
+const int VITESSE_3 = 75;
+const int VITESSE_4 = 100;
 
 
 //F1 Gestion des moteurs
-void gestion_mot_Droit(unsigned int puissance)
+void avance_Vitesse_Droit(int vit)
+{
+    /*
+    gere les impulsions de commande du moteur Gauche 
+    en fonction d'une puissance en % (0 a 100)
+        gpio raspberry
+    */
+     unsigned int puissance;
+   if (vit <0)
+   {
+    puissance = 0;
+   }
+   else if (vit>100)
+   {
+    puissance =100
+   }
+   else
+   {
+    puissance = vit;
+   }
+
+   pwmDutyCycle(CHAN_MOT_GAUCHE,puissance);
+
+}
+
+void avance_Vitesse_Gauche(int vit)
 {
     /*
     gere les impulsions de commande du moteur Droit 
@@ -48,34 +87,22 @@ void gestion_mot_Droit(unsigned int puissance)
     utilise
         gpio raspberry
     */
-   pwmDutyCycle(CHAN_MOT_DROIT,puissance)
-}
+   unsigned int puissance;
+   if (vit <0)
+   {
+    puissance = 0;
+   }
+   else if (vit>100)
+   {
+    puissance =100
+   }
+   else
+   {
+    puissance = vit;
+   }
+   
+   pwmDutyCycle(CHAN_MOT_DROIT,puissance);
 
-void gestion_mot_Gauche(int puissance)
-{
-    /*
-    gere les impulsions de commande du moteur Gauche 
-    en fonction d'une puissance en % (0 a 100)
-        gpio raspberry
-    */
-   pwmDutyCycle(CHAN_MOT_GAUCHE,puissance)
-}
-
-void avance_Vitesse_Droit(int vit)
-{
-    /*
-    utilise 
-        - gestion_mot_Droit
-    */
-
-}
-
-void avance_Vitesse_Gauche(int vit)
-{
-    /*
-    utilise 
-        - gestion_mot_Gauche
-    */
 }
 
 void avance_vit(int vit)
@@ -86,7 +113,19 @@ void avance_vit(int vit)
         - avance_Vitesse_Gauche
         - detect_angle
         - correction_angle
-    */   
+    */
+   double angle = get_angle();
+
+   if(detect_angle(angle))
+   {
+    avance_Vitesse_Droit(vit);
+    avance_Vitesse_Gauche(vit);
+   }
+   else
+   {
+    correction_angle(angle,vit);
+   }
+   
 }
 
 void stop_Mot_Gauche()
@@ -119,7 +158,12 @@ bool detec_Capt_Droit()
         gpio raspberry
     */
     bool detect;
-    //code
+    detect= false;
+    if (gpioGetInput(PIN_CAPT_DROIT) >0.5)
+    {
+       detect = true;
+    }
+    
     return detect;
 }
 
@@ -131,7 +175,12 @@ bool detec_Capt_Gauche()
         gpio raspberry
     */
     bool detect;
-    //code
+    detect= false;
+    if (gpioGetInput(PIN_CAPT_GAUCHE) > 0.5)
+    {
+       detect = true;
+    }
+    
     return detect;
 }
 
@@ -144,7 +193,7 @@ bool detec_2_Capt()
         - detec_Capt_Droit
     */
     bool detect;
-    //code
+    detect = (detec_Capt_Droit && detec_Capt_Gauche)
     return detect;
 }
 
@@ -161,7 +210,7 @@ void avance_dis(int dis,int vit)
 
 }
 
-void avance_valon(int dis,int vit)
+void avance_valon(int vit)
 {
     /*
     Avance tout droit d'une distance dis en cm a une vitesse vit
@@ -170,6 +219,15 @@ void avance_valon(int dis,int vit)
         - detec_2_Capt
         - stop
     */
+   if (detec_2_Capt())
+   {
+    avance_vit(vit);
+   }
+   else
+   {
+    stop();
+   }
+   
 }
 
 void tourne(int angle)
@@ -214,6 +272,8 @@ void stop()
         - stop_Mot_Droit 
         - stop_Mot_Gauche
     */
+   stop_Mot_Droit();
+   stop_Mot_Gauche();
 }
 
 
@@ -369,19 +429,19 @@ bool detect_temp(int time_x, int time_init)
 
 
 //F8 gestion Boussole
-int get_angle()
+double get_angle()
 {
     /*
     Permet d'optenir l'angle actuel de la boussole
     utilise
         <sensehat.h>
     */
-    int angle;
-    //code
+    double angle;
+    angle senseGetCompass();
     return angle;
 }
 
-bool detect_angle(int angle)
+bool detect_angle(double angle)
 {
     /*
     detecte si on est dans la plage de l'angle donnez
@@ -389,8 +449,14 @@ bool detect_angle(int angle)
     utilise
         get_angle
     */
-    bool detect;
-    //code
+        bool detect = false;
+        double angle_actuel = get_angle();
+        double min = angle - DEGRE_ANGLE_LIB;
+        double max = angle + DEGRE_ANGLE_LIB;
+        if (angle_actuel >= min && angle_actuel <= max)
+        {
+            detect = true;
+        } 
     return detect;
 }
 
@@ -432,7 +498,7 @@ void securiter(int timemax,int time_init)
     */
 }
 
-void correction_angle(int angle,int vit)
+void correction_angle(double angle_cap,int vit)
 {
     /*
     corrige l'angle en fonction a quelle point il est deporte de sa direction
@@ -442,6 +508,20 @@ void correction_angle(int angle,int vit)
         - get_angle
         - detect_angle
     */
+    double dif;
+    dif=angle_cap -get_angle();
+    if (dif < 0)
+    {
+        avance_Vitesse_Gauche()//++
+        avance_Vitesse_Droit()//--
+    }
+    else
+    {
+        avance_Vitesse_Droit()//++
+        avance_Vitesse_Gauche()//--
+    }
+    
+
 }
 
 
@@ -538,6 +618,7 @@ void ligneDroite()
 {
     //Permet au robot d'avancer en ligne droite
     cout << "Scénario ligne droite" <<endl;
+    avance_valon(50);
 }
 
 //Scénar 1
@@ -570,52 +651,56 @@ void scenEntrepot()
 
 int main(int argc, char const *argv[])
 {
-
-    //init
-        gpioSetConfig(PIN_CAPT_GAUCHE , in);
-        gpioSetConfig(PIN_CAPT_DROIT, in);
-
-        pwmInit(CHAN_MOT_DROIT);
-        pwmPeriod(CHAN_MOT_DROIT, PERIODE_MS);
-        pwmDutyCycle(CHAN_MOT_DROIT,0);
-        pwmEnable(CHAN_MOT_DROIT);
-
-        pwmInit(CHAN_MOT_GAUCHE);
-        pwmPeriod(CHAN_MOT_GAUCHE, PERIODE_MS);
-        pwmDutyCycle(CHAN_MOT_GAUCHE,0);
-        pwmEnable(CHAN_MOT_GAUCHE);
-
-    //programme
-    int debuter;
-    bool end = false;
-
-    do
+    if(initCompas())
     {
-        cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
-            << "0 pour stop le programme"<< endl << "\t" 
-            << "1 pour le suivi de ligne droite"<< endl << "\t" 
-            << "2 pour le suivi de ligne avec courbes"<< endl << "\t" 
-            << "3 pour le robot d'entrepôt"<< endl;
-        cin>> debuter;        
-        
-        //selectionneur de scénario (mode)
-        
-        switch (debuter) {
-            case 1 :
-                ligneDroite();
-                break;
-            case 2:
-                suiviLigneCourbe();
-                break;
-            case 3:
-                scenEntrepot();
-                break;
-            case 0:
-                end = true;
-            default:
-                break;
-        }
-    }while(!end);
+            senseSetIMUConfig(true, true, false);
+
+        //init
+            gpioSetConfig(PIN_CAPT_GAUCHE , in);
+            gpioSetConfig(PIN_CAPT_DROIT, in);
+
+            pwmInit(CHAN_MOT_DROIT);
+            pwmPeriod(CHAN_MOT_DROIT, PERIODE_MS);
+            pwmDutyCycle(CHAN_MOT_DROIT,0);
+            pwmEnable(CHAN_MOT_DROIT);
+
+            pwmInit(CHAN_MOT_GAUCHE);
+            pwmPeriod(CHAN_MOT_GAUCHE, PERIODE_MS);
+            pwmDutyCycle(CHAN_MOT_GAUCHE,0);
+            pwmEnable(CHAN_MOT_GAUCHE);
+
+        //programme
+        int debuter;
+        bool end = false;
+
+        do
+        {
+            cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
+                << "0 pour stop le programme"<< endl << "\t" 
+                << "1 pour le suivi de ligne droite"<< endl << "\t" 
+                << "2 pour le suivi de ligne avec courbes"<< endl << "\t" 
+                << "3 pour le robot d'entrepôt"<< endl;
+            cin>> debuter;        
+            
+            //selectionneur de scénario (mode)
+            
+            switch (debuter) {
+                case 1 :
+                    ligneDroite();
+                    break;
+                case 2:
+                    suiviLigneCourbe();
+                    break;
+                case 3:
+                    scenEntrepot();
+                    break;
+                case 0:
+                    end = true;
+                default:
+                    break;
+            }
+        }while(!end);
+    }
 
     return 0;
 }
