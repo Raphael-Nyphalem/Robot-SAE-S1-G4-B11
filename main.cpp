@@ -510,15 +510,17 @@ void correction_angle(double angle_cap,int vit)
     */
     double dif;
     dif=angle_cap -get_angle();
+
+    //il faudra que la vitesse soit proportionnel
     if (dif < 0)
     {
-        avance_Vitesse_Gauche()//++
-        avance_Vitesse_Droit()//--
+        avance_Vitesse_Gauche(VITESSE_4)//++
+        avance_Vitesse_Droit(VITESSE_1)//--
     }
     else
     {
-        avance_Vitesse_Droit()//++
-        avance_Vitesse_Gauche()//--
+        avance_Vitesse_Droit(VITESSE_4)//++
+        avance_Vitesse_Gauche(VITESSE_1)//--
     }
     
 
@@ -618,7 +620,19 @@ void ligneDroite()
 {
     //Permet au robot d'avancer en ligne droite
     cout << "Scénario ligne droite" <<endl;
-    avance_valon(50);
+    int vit = VITESSE_2;
+    double cap= get_angle();
+    
+    if (detect_angle(cap))
+    {
+        avance_valon(vit);
+    }
+    else
+    {
+        correction_angle(vit,cap);
+    }
+
+    avance_valon(vit);
 }
 
 //Scénar 1
