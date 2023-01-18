@@ -52,17 +52,38 @@ const int VITESSE_2 = 50;
 const int VITESSE_3 = 75;
 const int VITESSE_4 = 100;
 
+void init_gpio()
+{
+    gpioSetConfig(PIN_CAPT_GAUCHE, in);
+    gpioSetConfig(PIN_CAPT_DROIT, in);
+
+    pwmInit(CHAN_MOT_DROIT);
+    pwmPeriod(CHAN_MOT_DROIT, PERIODE_MS);
+    pwmDutyCycle(CHAN_MOT_DROIT,0);
+    pwmEnable(CHAN_MOT_DROIT);
+
+    pwmInit(CHAN_MOT_GAUCHE);
+    pwmPeriod(CHAN_MOT_GAUCHE, PERIODE_MS);
+    pwmDutyCycle(CHAN_MOT_GAUCHE,0);
+    pwmEnable(CHAN_MOT_GAUCHE);
+}
+
+void init()
+{
+    init_gpio();
+}
+
 
 //F1 Gestion des moteurs
-void avance_Vitesse_Droit(int vit)
+void avance_Vitesse_Droit(unsigned int vit)
 {
     /*
     gere les impulsions de commande du moteur Gauche 
     en fonction d'une puissance en % (0 a 100)
         gpio raspberry
     */
-     unsigned int puissance;
-   if (vit <0)
+    unsigned int puissance;
+  /* if (vit <0)
    {
     puissance = 0;
    }
@@ -74,6 +95,8 @@ void avance_Vitesse_Droit(int vit)
    {
     puissance = vit;
    }
+   */
+  puissance = vit;
 
    pwmDutyCycle(CHAN_MOT_GAUCHE,puissance);
 
