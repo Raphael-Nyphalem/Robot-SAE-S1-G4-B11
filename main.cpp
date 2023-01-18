@@ -56,9 +56,6 @@ const int VITESSE_4 = 100;
 
 // Déclaration des fonctions
 
-void correction_angle(double angle,unsigned int vit);
-double get_angle();
-bool detect_angle(double angle);
 void stop();
 
 // Fin Fonctions 
@@ -262,13 +259,11 @@ void ligneDroite()
     //Permet au robot d'avancer en ligne droite
     cout << "Scénario ligne droite" <<endl;
     unsigned int vit = VITESSE_2;
-    double cap= get_angle();
     
 	do
 	{
-		/* code */
 	
-	
+        /*
 		if (detect_angle(cap))
 		{
 			avance_valon(vit);
@@ -277,6 +272,7 @@ void ligneDroite()
 		{
 			correction_angle(cap, vit);
 		}
+        */
 
 		avance_valon(vit);
 		sleep_for(milliseconds(100));
