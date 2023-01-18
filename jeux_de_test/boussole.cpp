@@ -21,12 +21,13 @@ using namespace std::chrono;	  // system_clock, seconds, milliseconds
 // Début constantes
 const int INT_MESURES = 100;
 const int DEGRE_ANGLE_LIB = 10;
-const int MAX_MESURES = 60;
 // Fin constantes
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Début sous-programmes
+
+
 void initCompas()
 {
 	int cpt;
@@ -38,21 +39,21 @@ void initCompas()
 	cout << "initialisation faite" << endl;
 }
 
-bool detect_angle(double cap,double angle)
+double get_compas()
 {
-    double min,max;
-	double save_val;
+	return senseGetCompass();
+}
 
+bool calcul_Min_Max (double &min,double &max,double cap)
+{
+    double save_val;
 	bool inverse = false;
 
     min = cap - DEGRE_ANGLE_LIB;
     max = cap + DEGRE_ANGLE_LIB;
 	save_val = max;
 
-	cout<<min<<" "<<max<<" "<<inverse<<endl;
-
-	// cas proche de 0 ou 360
-	if(min < 0)
+    if(min < 0)
 	{
 		max = 360 + min;
 		min = save_val;
@@ -64,33 +65,41 @@ bool detect_angle(double cap,double angle)
 		min = save_val;
 		inverse = true;
 	}
+    return inverse;
+}
 
-	cout<<min<<" "<<max<<" "<<inverse<<endl;
 
-	if (inverse)
+bool detect_angle(double cap)
+{
+    double angle;
+    double min,max;
+	double save_val;
+
+    angle = get_compas();
+
+
+	if (calcul_Min_Max(min,max,cap))
 	{
 		if (!(angle >= min && angle <= max))
     	{
 			return true;
-    	}  
-	}
+    	}
+    }
 	else
-	{
-		if (angle >= min && angle <= max)
-		{
-			return true;
-		}
-	}
-	return false;
+    {
+         if (angle >= min && angle <= max)
+         {
+             return true;
+         }
+    }
+    return false;
+    
 }
 
-double get_compas()
-{
-	return senseGetCompass();
-}
 
 // Fin sous-programmes
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 int main()
 {

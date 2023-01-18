@@ -79,7 +79,7 @@ void avance_Vitesse_Droit(unsigned int vit)
         gpio raspberry
     */
     unsigned int puissance;
-    /* if (vit <0)
+    if (vit <0)
     {
         puissance = 0;
     }
@@ -91,8 +91,6 @@ void avance_Vitesse_Droit(unsigned int vit)
     {
         puissance = vit;
     }
-    */
-    puissance = vit;
 
    pwmDutyCycle(CHAN_MOT_GAUCHE,puissance);
 
@@ -107,7 +105,7 @@ void avance_Vitesse_Gauche(unsigned int vit)
         gpio raspberry
     */
    unsigned int puissance;
-   /*if (vit <0)
+   if (vit <0)
    {
     puissance = 0;
    }
@@ -119,8 +117,6 @@ void avance_Vitesse_Gauche(unsigned int vit)
    {
     puissance = vit;
    }
-   */
-  puissance = vit;
    
    pwmDutyCycle(CHAN_MOT_DROIT,puissance);
 
@@ -174,26 +170,44 @@ void stop()
    stop_Mot_Droit();
    stop_Mot_Gauche();
 }
+int debuter;
+        bool exit = true;
 
-void test()
+
+//TEST
+void test_avance_Vitesse_Droit()
 {
-    do
-    {
-        avance_Vitesse_Droit();
-        sleep_for(seconds(()));
-        stop_Mot_Droit();
-        avance_Vitesse_Gauche();
-        sleep_for(seconds(()));
-        stop_Mot_Gauche();
-        avance_vit();
-        sleep_for(seconds(5));
-        stop();
-    }while (true)
+    out<< "test avance_Vitesse_Gauche()"<<endl;
+    avance_Vitesse_Droit(VITESSE_2);
+    sleep_for(seconds(5));
+    cout<< "test stop_Mot_Droit() "<<endl;
+    stop_Mot_Droit();
+    
 }
 
+void test_avance_Vitesse_Gauche()
+{
+    cout<< "test avance_Vitesse_Gauche"<<endl;
+    avance_Vitesse_Gauche(VITESSE_2);
+    sleep_for(seconds(5));
+    cout<< "test stop_Mot_Gauche "<<endl;
+    stop_Mot_Gauche();
+    
+}
+void test_avance_vit()
+{
+    cout<< "test avance_vit()"<<endl;
+    avance_vit(VITESSE_2);
+    sleep_for(seconds(5));
+    cout<< "test stop()"<<endl;
+    stop();
+    
+}
 
 // Fin sous-programmes
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
 int main() {
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -210,20 +224,27 @@ int main() {
 
         //programme
         int debuter;
+        bool exit = true;
         do
         {
             cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
                 << "0 pour stop le programme"<< endl << "\t" 
-                << "1 pour le suivi de ligne droite"<< endl << "\t" 
-                << "2 pour le suivi de ligne avec courbes"<< endl << "\t" 
-                << "3 pour le robot d'entrepôt"<< endl;
+                << "1 pour test moteur droit"<<endl
+                << "2 pour test moteur gauche"<<endl
+                << "3 pour test 2 moteur"<<endl;
             cin>> debuter;        
             
             //selectionneur de scénario (mode)
             
             switch (debuter) {
                 case 1 :
-                    test();
+                    test_avance_Vitesse_Droit();
+                    break;
+                case 2 :
+                    test_avance_Vitesse_Gauche();
+                    break;
+                case 3 :
+                    test_avance_vit();
                     break;
                 default:
                     break;

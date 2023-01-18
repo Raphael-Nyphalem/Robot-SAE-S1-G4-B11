@@ -51,11 +51,18 @@ const int VITESSE_2 = 50;
 const int VITESSE_3 = 75;
 const int VITESSE_4 = 100;
 
+//Compass
+const int INT_MESURES = 100;
+const int DEGRE_ANGLE_LIB = 10;
+
 // Fin constantes
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Déclaration des fonctions
 
+
+double get_compas();
+bool detect_angle(double angle);
 void stop();
 
 // Fin Fonctions 
@@ -77,9 +84,21 @@ void init_gpio()
     pwmEnable(CHAN_MOT_GAUCHE);
 }
 
+void initCompas()
+{
+	int cpt;
+	senseSetIMUConfig(true, true, true);
+	for (cpt = 0; cpt < INT_MESURES; cpt++)
+	{
+		senseGetCompass();
+	}
+	cout << "initialisation faite" << endl;
+}
+
 void init()
 {
     init_gpio();
+    initCompas();
 }
 
 
@@ -92,18 +111,20 @@ void avance_Vitesse_Droit(unsigned int vit)
         gpio raspberry
     */
     unsigned int puissance;
-    if (vit <0)
-    {
-        puissance = 0;
-    }
-    else if (vit>100)
-    {
-        puissance =100;
-    }
-    else
-    {
-        puissance = vit;
-    }
+  /* if (vit <0)
+   {
+    puissance = 0;
+   }
+   else if (vit>100)
+   {
+    puissance =100;
+   }
+   else
+   {
+    puissance = vit;
+   }
+   */
+  puissance = vit;
 
    pwmDutyCycle(CHAN_MOT_GAUCHE,puissance);
 
@@ -118,7 +139,7 @@ void avance_Vitesse_Gauche(unsigned int vit)
         gpio raspberry
     */
    unsigned int puissance;
-   if (vit <0)
+   /*if (vit <0)
    {
     puissance = 0;
    }
@@ -130,6 +151,8 @@ void avance_Vitesse_Gauche(unsigned int vit)
    {
     puissance = vit;
    }
+   */
+  puissance = vit;
    
    pwmDutyCycle(CHAN_MOT_DROIT,puissance);
 
@@ -248,67 +271,144 @@ void stop()
    stop_Mot_Gauche();
 }
 
-
-//SCENARIOS
-void ligneDroite()
+double get_compas()
 {
-    //Permet au robot d'avancer en ligne droite
-    cout << "Scénario ligne droite" <<endl;
-    unsigned int vit = VITESSE_2;
-    
-	do
+	return senseGetCompass();
+}
+
+bool calcul_Min_Max (double &min,double &max,double cap)
+{
+    double save_val;
+	bool inverse = false;
+
+    min = cap - DEGRE_ANGLE_LIB;
+    max = cap + DEGRE_ANGLE_LIB;
+	save_val = max;
+
+    if(min < 0)
 	{
+		max = 360 + min;
+		min = save_val;
+		inverse = true;
+	}
+	else if(max > 360)
+	{
+		max = max - 360;
+		min = save_val;
+		inverse = true;
+	}
+    return inverse;
+}
+
+bool detect_angle(double cap)
+{
+    double angle;
+    double min,max;
+	double save_val;
+
+    angle = get_compas();
+
+
+	if (calcul_Min_Max(min,max,cap))
+	{
+		if (!(angle >= min && angle <= max))
+    	{
+			return true;
+    	}
+    }
+	else
+    {
+         if (angle >= min && angle <= max)
+         {
+             return true;
+         }
+    }
+    return false;
+    
+}
+
+void correction_angle(double angle_cap)
+{
+    /*
+    corrige l'angle en fonction a quelle point il est deporte de sa direction
+    utilise
+        - avance_Vitesse_Droit
+        - avance_Vitesse_Gauche
+        - get_angle
+        - detect_angle
+    */
+    double min,max;
+	double angle;
+
+    angle = get_compas();
+
+    if (calcul_Min_Max(min,max,cap))
+    {
+        //cas inversé
+        if(angle < min)
+        {
+            avance_Vitesse_Gauche(VITESSE_4);
+            avance_Vitesse_Droit(VITESSE_1)
+        }
+        else if (angle > max)
+        {
+            avance_Vitesse_Gauche(VITESSE_4);
+            avance_Vitesse_Droit(VITESSE_1);
+        }
+        else avance_valon(VITESSE_4);
+    }
+    else
+    {
+        //cas non inversé
+        //On prends en compte que la boussole fonctionne en sens trogonométrique(anti-horraire)
+        if(angle < min)
+        {
+            avance_Vitesse_Gauche(VITESSE_1);
+            avance_Vitesse_Droit(VITESSE_4)
+        }
+        else if (angle > max)
+        {
+            avance_Vitesse_Gauche(VITESSE_4);
+            avance_Vitesse_Droit(VITESSE_1);
+        }
+        else avance_valon(VITESSE_4);
+    }
+
+
 	
-        /*
-		if (detect_angle(cap))
+    
+
+}
+
+void avance_Cap(double cap)
+{
+    
+    do
+    {
+        
+		if(detect_angle(cap))
 		{
-			avance_valon(vit);
+			avance_valon(VITESSE_4);
 		}
 		else
 		{
-			correction_angle(cap, vit);
+			correction_angle(cap);
 		}
-        */
 
-		avance_valon(vit);
-		sleep_for(milliseconds(100));
-	}while(true);
-}
-
-//Scénar 1
-void suiviLigneCourbe()
-{
-    //Permet au robot de suivre une ligne avec des virages
-
-    cout << "Scénario ligne courbe" <<endl;
-   do
-    {
-         if(detec_2_Capt())
-        {
-            stop();
-        }
-        else if (detec_Capt_Droit())
-        {
-            avance_Vitesse_Gauche(VITESSE_1);
-        }
-        else if (detec_Capt_Gauche())
-        {
-            avance_Vitesse_Droit(VITESSE_1);
-        }
-        else
-        {
-            avance_valon(VITESSE_4);
-        }
     } while (true);
-
-   
 }
 
-//Scénar 3
-void scenEntrepot()
+
+//test
+void test_cap()
 {
-    cout << "Scénario Entrepôt" <<endl;
+    double cap;
+    cap = 1; //get_compas();
+    avance_Cap(cap);
 }
+
+
+
 
 // Fin sous-programmes
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -328,7 +428,6 @@ int main() {
 
         //programme
         int debuter;
-        bool exit = true;
         do
         {
             cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
@@ -336,13 +435,12 @@ int main() {
                 << "1 pour le suivi de ligne droite"<< endl << "\t" 
                 << "2 pour le suivi de ligne avec courbes"<< endl << "\t" 
                 << "3 pour le robot d'entrepôt"<< endl;
+                << "4 pour le test d'une fonction"<< endl;
             cin>> debuter;        
             
             //selectionneur de scénario (mode)
             
             switch (debuter) {
-                case 0:
-                    exit = false;
                 case 1 :
                     ligneDroite();
                     break;
@@ -358,7 +456,7 @@ int main() {
                 default:
                     break;
             }
-        }while(exit);
+        }while(true);
 		// Fin instructions
 		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		cout << "Press joystick button to quit." << endl;

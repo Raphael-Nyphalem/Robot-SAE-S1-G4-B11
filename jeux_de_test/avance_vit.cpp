@@ -92,20 +92,18 @@ void avance_Vitesse_Droit(unsigned int vit)
         gpio raspberry
     */
     unsigned int puissance;
-  /* if (vit <0)
-   {
-    puissance = 0;
-   }
-   else if (vit>100)
-   {
-    puissance =100;
-   }
-   else
-   {
-    puissance = vit;
-   }
-   */
-  puissance = vit;
+    if (vit <0)
+    {
+        puissance = 0;
+    }
+    else if (vit>100)
+    {
+        puissance =100;
+    }
+    else
+    {
+        puissance = vit;
+    }
 
    pwmDutyCycle(CHAN_MOT_GAUCHE,puissance);
 
@@ -120,7 +118,7 @@ void avance_Vitesse_Gauche(unsigned int vit)
         gpio raspberry
     */
    unsigned int puissance;
-   /*if (vit <0)
+   if (vit <0)
    {
     puissance = 0;
    }
@@ -132,8 +130,6 @@ void avance_Vitesse_Gauche(unsigned int vit)
    {
     puissance = vit;
    }
-   */
-  puissance = vit;
    
    pwmDutyCycle(CHAN_MOT_DROIT,puissance);
 
@@ -253,7 +249,10 @@ void stop()
 }
 
 
-//SCENARIOS
+
+
+
+//TEST
 void ligneDroite()
 {
     //Permet au robot d'avancer en ligne droite
@@ -279,7 +278,7 @@ void ligneDroite()
 	}while(true);
 }
 
-//Scénar 1
+
 void suiviLigneCourbe()
 {
     //Permet au robot de suivre une ligne avec des virages
@@ -308,8 +307,12 @@ void suiviLigneCourbe()
    
 }
 
+
 // Fin sous-programmes
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 
 int main() {
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -331,8 +334,7 @@ int main() {
         {
             cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
                 << "0 pour stop le programme"<< endl << "\t" 
-                << "1 pour le suivi de ligne droite"<< endl << "\t" 
-                << "2 pour le suivi de ligne avec courbes"<< endl;
+                << "1 pour le "<<endl;
             cin>> debuter;        
             
             //selectionneur de scénario (mode)
