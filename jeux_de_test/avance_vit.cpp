@@ -308,12 +308,6 @@ void suiviLigneCourbe()
    
 }
 
-//Scénar 3
-void scenEntrepot()
-{
-    cout << "Scénario Entrepôt" <<endl;
-}
-
 // Fin sous-programmes
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -338,8 +332,7 @@ int main() {
             cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
                 << "0 pour stop le programme"<< endl << "\t" 
                 << "1 pour le suivi de ligne droite"<< endl << "\t" 
-                << "2 pour le suivi de ligne avec courbes"<< endl << "\t" 
-                << "3 pour le robot d'entrepôt"<< endl;
+                << "2 pour le suivi de ligne avec courbes"<< endl;
             cin>> debuter;        
             
             //selectionneur de scénario (mode)
@@ -352,12 +345,6 @@ int main() {
                     break;
                 case 2:
                     suiviLigneCourbe();
-                    break;
-                case 3:
-                    scenEntrepot();
-                    break;
-				case 4:
-                    test();
                     break;
                 default:
                     break;
