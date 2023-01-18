@@ -53,7 +53,6 @@ void init()
 }
 
 
-v
 
 //F2 Détection des capteurs
 bool detec_Capt_Droit()
