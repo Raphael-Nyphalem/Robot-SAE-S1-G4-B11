@@ -161,71 +161,7 @@ void stop_Mot_Droit()
 }
 
 
-//F2 Détection des capteurs
-bool detec_Capt_Droit()
-{
-    /*
-    Renvois Vrais si le capteur Droit detecte une bande noir
-    utilise
-        gpio raspberry
-    */
-    bool detect;
-    detect= false;
-    if (gpioGetInput(PIN_CAPT_DROIT) ==0)
-    {
-       detect = true;
-    }
-    return detect;
-}
-
-bool detec_Capt_Gauche()
-{
-    /*
-    Renvois Vrais si le capteur Gauche detecte une bande noir
-    utilise
-        gpio raspberry
-    */
-    bool detect;
-    detect= false;
-    if (gpioGetInput(PIN_CAPT_GAUCHE) == 0)
-    {
-       detect = true;
-    }
-    return detect;
-}
-
-bool detec_2_Capt()
-{
-    /*
-    Renvois Vrais si les 2 capteurs detecte une bande noir
-    utilise
-        - detec_Capt_Gauche
-        - detec_Capt_Droit
-    */
-    bool detect;
-    detect = detec_Capt_Droit() && detec_Capt_Gauche();
-    return detect;
-}
-
-void avance_valon(unsigned int vit)
-{
-    /*
-    Avance tout droit d'une distance dis en cm a une vitesse vit
-    utilise
-        - avance_vit
-        - detec_2_Capt
-        - stop
-    */
-   if (detec_2_Capt())
-   {
-    stop();
-   }
-   else
-   {
-    avance_vit(vit);
-   }
-   
-}
+/
 
 void stop()
 {
@@ -239,81 +175,23 @@ void stop()
    stop_Mot_Gauche();
 }
 
-
-//SCENARIOS
-void ligneDroite()
-{
-    //Permet au robot d'avancer en ligne droite
-    cout << "Scénario ligne droite" <<endl;
-    unsigned int vit = VITESSE_2;
-    double cap= get_angle();
-    
-	do
-	{
-		/* code */
-	
-	
-		if (detect_angle(cap))
-		{
-			avance_valon(vit);
-		}
-		else
-		{
-			correction_angle(cap, vit);
-		}
-
-		avance_valon(vit);
-		sleep_for(milliseconds(100));
-	}while(true);
-}
-
-//Scénar 1
-void suiviLigneCourbe()
-{
-    //Permet au robot de suivre une ligne avec des virages
-
-    cout << "Scénario ligne courbe" <<endl;
-   do
-    {
-         if(detec_2_Capt())
-        {
-            cout << "detec_2_Capt()\n";
-            stop();
-        }
-        else if (detec_Capt_Droit())
-        {
-            avance_Vitesse_Gauche(VITESSE_1);
-        }
-        else if (detec_Capt_Gauche())
-        {
-            avance_Vitesse_Droit(VITESSE_1);
-        }
-        else
-        {
-            avance_valon(VITESSE_4);
-        }
-    } while (true);
-
-   
-}
-
-//Scénar 3
-void scenEntrepot()
-{
-    cout << "Scénario Entrepôt" <<endl;
-}
-
 void test()
 {
     do
     {
-        detec_Capt_Droit();
-        detec_Capt_Gauche();
-        sleep_for(milliseconds(500));
-    } while (true);
-    
-	
+        avance_Vitesse_Droit();
+        sleep_for(seconds(()));
+        stop_Mot_Droit();
+        avance_Vitesse_Gauche();
+        sleep_for(seconds(()));
+        stop_Mot_Gauche();
+        avance_vit();
+        sleep_for(seconds(5));
+        stop();
+    }while (true)
 }
+
+
 // Fin sous-programmes
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
