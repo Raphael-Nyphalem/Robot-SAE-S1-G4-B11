@@ -289,7 +289,6 @@ void suiviLigneCourbe()
     {
          if(detec_2_Capt())
         {
-            cout << "detec_2_Capt()\n";
             stop();
         }
         else if (detec_Capt_Droit())
