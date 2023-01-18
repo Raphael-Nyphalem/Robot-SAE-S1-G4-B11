@@ -68,7 +68,7 @@ void avance_Vitesse_Droit(int vit)
    }
    else if (vit>100)
    {
-    puissance =100
+    puissance =100;
    }
    else
    {
@@ -94,7 +94,7 @@ void avance_Vitesse_Gauche(int vit)
    }
    else if (vit>100)
    {
-    puissance =100
+    puissance =100;
    }
    else
    {
@@ -135,7 +135,7 @@ void stop_Mot_Gauche()
     utilise 
         - gestion_mot_Gauche
     */
-   pwmDutyCycle(CHAN_MOT_GAUCHE,0)
+   pwmDutyCycle(CHAN_MOT_GAUCHE,0);
 }
 
 void stop_Mot_Droit()
@@ -145,7 +145,7 @@ void stop_Mot_Droit()
     utilise 
         - gestion_mot_Gauche
     */
-   pwmDutyCycle(CHAN_MOT_DROIT,0)
+   pwmDutyCycle(CHAN_MOT_DROIT,0);
 }
 
 
@@ -436,9 +436,7 @@ double get_angle()
     utilise
         <sensehat.h>
     */
-    double angle;
-    angle senseGetCompass();
-    return angle;
+    return senseGetCompass();
 }
 
 bool detect_angle(double angle)
@@ -498,7 +496,7 @@ void securiter(int timemax,int time_init)
     */
 }
 
-void correction_angle(double angle_cap,int vit)
+void correction_angle(double angle_cap,unsigne int vit)
 {
     /*
     corrige l'angle en fonction a quelle point il est deporte de sa direction
@@ -514,13 +512,13 @@ void correction_angle(double angle_cap,int vit)
     //il faudra que la vitesse soit proportionnel
     if (dif < 0)
     {
-        avance_Vitesse_Gauche(VITESSE_4)//++
-        avance_Vitesse_Droit(VITESSE_1)//--
+        avance_Vitesse_Gauche(VITESSE_4);//++
+        avance_Vitesse_Droit(VITESSE_1);//--
     }
     else
     {
-        avance_Vitesse_Droit(VITESSE_4)//++
-        avance_Vitesse_Gauche(VITESSE_1)//--
+        avance_Vitesse_Droit(VITESSE_4);//++
+        avance_Vitesse_Gauche(VITESSE_1);//--
     }
     
 
