@@ -5,14 +5,14 @@
  *Ce programme à pour but de permettre les test des fonctions ddes capteur de ligne
  */
 
-#include <capteur.hpp>
+#include "capteur.hpp"
 
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
 
 
-    namespace saeS1{
+namespace saeS1{
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Début constantes
     const unsigned int PIN_CAPT_GAUCHE = 16;

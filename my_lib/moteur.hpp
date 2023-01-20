@@ -1,5 +1,5 @@
-#ifndef S1SAE_MOTEUR_HPP
-#define S1SAE_MOTEUR_HPP
+#ifndef SAES1_MOTEUR_HPP
+#define SAES1_MOTEUR_HPP
 
 
 #include <iostream>

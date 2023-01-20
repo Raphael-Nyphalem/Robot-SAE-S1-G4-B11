@@ -1,6 +1,6 @@
 //capteur.hpp
-#ifndef CAPTEUR_HPP
-#define CAPTEUR_HPP
+#ifndef SAES1CAPTEUR_HPP
+#define SAES1CAPTEUR_HPP
 
 #include <iostream>
 #include <iomanip>

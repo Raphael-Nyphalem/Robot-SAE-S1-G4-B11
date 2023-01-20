@@ -1,6 +1,6 @@
 //boussole.hpp
-#ifndef BOUSSOLE_HPP
-#define BOUSSOLE_HPP
+#ifndef SAES1_BOUSSOLE_HPP
+#define SAES1_BOUSSOLE_HPP
 
 #include <iostream>
 #include <iomanip>
@@ -23,6 +23,11 @@ namespace saeS1{
 
     bool detect_angle(
         double cap
+        );
+    
+    bool calcul_Inverse_Cap(
+        double cap,
+        double &nonCap
         );
 
 } //namespace saeS1

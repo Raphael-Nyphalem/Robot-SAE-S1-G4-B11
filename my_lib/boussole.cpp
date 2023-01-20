@@ -6,7 +6,7 @@
  */
 
 
-#include <boussole.hpp>
+#include "boussole.hpp"
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono;	  // system_clock, seconds, milliseconds
@@ -62,6 +62,22 @@ namespace saeS1{
         return inverse;
     }
 
+    bool calcul_Inverse_Cap(double cap, double &nonCap)
+    {
+        /*
+            Renvoie vrai si le cap est supérieur à 180 et calcule l'opposé du cap.
+        */
+        if(cap < 180)
+        {
+            nonCap = cap+180;
+            return false;
+        }
+        else
+        {
+            nonCap = cap-180;
+            return true;
+        }
+    }
 
     bool detect_angle(double cap)
     {
