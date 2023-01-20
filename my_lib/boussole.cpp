@@ -16,8 +16,7 @@ namespace saeS1{
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Début constantes
-    const int INT_MESURES = 100;
-    const int DEGRE_ANGLE_LIB = 10;
+
     // Fin constantes
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

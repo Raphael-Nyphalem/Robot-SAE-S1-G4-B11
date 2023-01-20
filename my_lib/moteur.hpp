@@ -9,7 +9,18 @@
 #include <sensehat.h>
 
 namespace saeS1{
-	
+
+    const unsigned int CHAN_MOT_GAUCHE = 0;
+    const unsigned int CHAN_MOT_DROIT= 1;
+    const unsigned int PERIODE_MS = 10000;
+
+
+    const int VITESSE_0 = 0;
+    const int VITESSE_1 = 25;
+    const int VITESSE_2 = 50;
+    const int VITESSE_3 = 75;
+    const int VITESSE_4 = 100;
+
     void 
     init_gpio_moteur();
 

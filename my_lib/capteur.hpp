@@ -11,6 +11,9 @@
 
 namespace saeS1{
 
+    const unsigned int PIN_CAPT_GAUCHE = 16;
+    const unsigned int PIN_CAPT_DROIT= 17;
+    
     void 
     init_gpio_capteur();
 

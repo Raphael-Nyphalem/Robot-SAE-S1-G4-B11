@@ -13,12 +13,7 @@ using namespace std::chrono; // system_clock, seconds, milliseconds
 
 
 namespace saeS1{
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Début constantes
-    const unsigned int PIN_CAPT_GAUCHE = 16;
-    const unsigned int PIN_CAPT_DROIT= 17;
-    // Fin constantes
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 
     // Début sous-programmes
