@@ -27,66 +27,16 @@ using namespace std::chrono; // system_clock, seconds, milliseconds
 
 using namespace saeS1;
 
-//SCENARIOS
-void ligneDroite()
+//test
+void test_cap()
 {
-    //Permet au robot d'avancer en ligne droite
-    cout << "Scénario ligne droite" <<endl;
-    unsigned int vit = VITESSE_2;
-    
-	do
-	{
-	
-        /*
-		if (detect_angle(cap))
-		{
-			avance_valon(vit);
-		}
-		else
-		{
-			correction_angle(cap, vit);
-		}
-        */
-
-		avance_valon(vit);
-		sleep_for(milliseconds(100));
-	}while(true);
+    double cap;
+    cap = 1; //get_compas();
+    avance_Cap(cap);
 }
 
-//Scénar 1
-void suiviLigneCourbe()
-{
-    //Permet au robot de suivre une ligne avec des virages
 
-    cout << "Scénario ligne courbe" <<endl;
-   do
-    {
-         if(detec_2_Capt())
-        {
-            stop();
-        }
-        else if (detec_Capt_Droit())
-        {
-            avance_Vitesse_Gauche(VITESSE_1);
-        }
-        else if (detec_Capt_Gauche())
-        {
-            avance_Vitesse_Droit(VITESSE_1);
-        }
-        else
-        {
-            avance_valon(VITESSE_4);
-        }
-    } while (true);
 
-   
-}
-
-//Scénar 3
-void scenEntrepot()
-{
-    cout << "Scénario Entrepôt" <<endl;
-}
 
 // Fin sous-programmes
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,6 +64,7 @@ int main() {
                 << "1 pour le suivi de ligne droite"<< endl << "\t" 
                 << "2 pour le suivi de ligne avec courbes"<< endl << "\t" 
                 << "3 pour le robot d'entrepôt"<< endl;
+                << "4 pour le test d'une fonction"<< endl;
             cin>> debuter;        
             
             //selectionneur de scénario (mode)
@@ -121,14 +72,9 @@ int main() {
             switch (debuter) {
                 case 0:
                     exitboucle = false;
+                    break;
                 case 1 :
-                    ligneDroite();
-                    break;
-                case 2:
-                    suiviLigneCourbe();
-                    break;
-                case 3:
-                    scenEntrepot();
+                    test_cap();
                     break;
                 default:
                     break;

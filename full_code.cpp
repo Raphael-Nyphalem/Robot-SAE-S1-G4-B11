@@ -519,7 +519,7 @@ void securiter(int timemax,int time_init)
     */
 }
 
-void correction_angle(double angle_cap,unsigne int vit)
+void correction_angle(double angle_cap,unsigned int vit)
 {
     /*
     corrige l'angle en fonction a quelle point il est deporte de sa direction

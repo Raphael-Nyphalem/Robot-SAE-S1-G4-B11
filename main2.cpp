@@ -21,10 +21,14 @@
 
 #include <sensehat.h>
 
+
+#include "my_lib/boussole.hpp"
+#include "my_lib/capteur.hpp"
+#include "my_lib/moteur.hpp"
+
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
-
 using namespace saeS1;
 
 //SCENARIOS
@@ -36,18 +40,6 @@ void ligneDroite()
     
 	do
 	{
-	
-        /*
-		if (detect_angle(cap))
-		{
-			avance_valon(vit);
-		}
-		else
-		{
-			correction_angle(cap, vit);
-		}
-        */
-
 		avance_valon(vit);
 		sleep_for(milliseconds(100));
 	}while(true);
@@ -106,7 +98,7 @@ int main() {
 
         //programme
         int debuter;
-        bool exitboucle = true;
+        bool exit = true;
         do
         {
             cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
@@ -120,7 +112,7 @@ int main() {
             
             switch (debuter) {
                 case 0:
-                    exitboucle = false;
+                    exit = false;
                 case 1 :
                     ligneDroite();
                     break;
@@ -130,10 +122,13 @@ int main() {
                 case 3:
                     scenEntrepot();
                     break;
+				case 4:
+                    test();
+                    break;
                 default:
                     break;
             }
-        }while(exitboucle);
+        }while(exit);
 		// Fin instructions
 		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		cout << "Press joystick button to quit." << endl;
