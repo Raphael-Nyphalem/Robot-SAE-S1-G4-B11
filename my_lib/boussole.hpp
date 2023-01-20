@@ -35,4 +35,4 @@ namespace saeS1{
 
 } //namespace saeS1
 
-#endif //CAPTEUR_HPP
+#endif //BOUSSOLE_HPP

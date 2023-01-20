@@ -25,229 +25,7 @@ using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Début constantes
-//capteur 
-const unsigned int PIN_CAPT_GAUCHE = 16;
-const unsigned int PIN_CAPT_DROIT= 17;
-
-//moteur
-const unsigned int CHAN_MOT_GAUCHE = 0;
-const unsigned int CHAN_MOT_DROIT= 1;
-
-const unsigned int PERIODE_MS = 10000;
-
-//ecran
-const int MAX_AFFICHE_X = 8;
-const int MAX_AFFICHE_Y = 8;
-
-//angle
-const int DEGRE_ANGLE_LIB = 5;//angle liberter que l'on donne pour la detection d'angle
-
-//Vitesse
-const int VITESSE_0 = 0;
-const int VITESSE_1 = 25;
-const int VITESSE_2 = 50;
-const int VITESSE_3 = 75;
-const int VITESSE_4 = 100;
-
-// Fin constantes
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// Déclaration des fonctions
-
-void stop();
-
-// Fin Fonctions 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Début sous-programmes
-void init_gpio()
-{
-    gpioSetConfig(PIN_CAPT_GAUCHE, in);
-    gpioSetConfig(PIN_CAPT_DROIT, in);
-
-    pwmInit(CHAN_MOT_DROIT);
-    pwmPeriod(CHAN_MOT_DROIT, PERIODE_MS);
-    pwmDutyCycle(CHAN_MOT_DROIT,0);
-    pwmEnable(CHAN_MOT_DROIT);
-
-    pwmInit(CHAN_MOT_GAUCHE);
-    pwmPeriod(CHAN_MOT_GAUCHE, PERIODE_MS);
-    pwmDutyCycle(CHAN_MOT_GAUCHE,0);
-    pwmEnable(CHAN_MOT_GAUCHE);
-}
-
-void init()
-{
-    init_gpio();
-}
-
-
-
-void avance_Vitesse_Droit(unsigned int vit)
-{
-    /*
-    gere les impulsions de commande du moteur Gauche 
-    en fonction d'une puissance en % (0 a 100)
-        gpio raspberry
-    */
-    unsigned int puissance;
-    if (vit <0)
-    {
-        puissance = 0;
-    }
-    else if (vit>100)
-    {
-        puissance =100;
-    }
-    else
-    {
-        puissance = vit;
-    }
-
-   pwmDutyCycle(CHAN_MOT_GAUCHE,puissance);
-
-}
-
-void avance_Vitesse_Gauche(unsigned int vit)
-{
-    /*
-    gere les impulsions de commande du moteur Droit 
-    en fonction d'une puissance en % (0 a 100)
-    utilise
-        gpio raspberry
-    */
-   unsigned int puissance;
-   if (vit <0)
-   {
-    puissance = 0;
-   }
-   else if (vit>100)
-   {
-    puissance =100;
-   }
-   else
-   {
-    puissance = vit;
-   }
-   
-   pwmDutyCycle(CHAN_MOT_DROIT,puissance);
-
-}
-
-void avance_vit(unsigned int vit)
-{
-    /*
-    utilise
-        - avance_Vitesse_Droit
-        - avance_Vitesse_Gauche
-        - detect_angle
-        - correction_angle
-    */
-    avance_Vitesse_Droit(vit);
-    avance_Vitesse_Gauche(vit);
-   
-}
-
-void stop_Mot_Gauche()
-{
-    /*
-    arret du moteur Gauche
-    utilise 
-        - gestion_mot_Gauche
-    */
-   pwmDutyCycle(CHAN_MOT_GAUCHE,0);
-}
-
-void stop_Mot_Droit()
-{
-    /*
-    arret du moteur Gauche
-    utilise 
-        - gestion_mot_Gauche
-    */
-   pwmDutyCycle(CHAN_MOT_DROIT,0);
-}
-
-
-//F2 Détection des capteurs
-bool detec_Capt_Droit()
-{
-    /*
-    Renvois Vrais si le capteur Droit detecte une bande noir
-    utilise
-        gpio raspberry
-    */
-    bool detect;
-    detect= false;
-    if (gpioGetInput(PIN_CAPT_DROIT) ==0)
-    {
-       detect = true;
-    }
-    return detect;
-}
-
-bool detec_Capt_Gauche()
-{
-    /*
-    Renvois Vrais si le capteur Gauche detecte une bande noir
-    utilise
-        gpio raspberry
-    */
-    bool detect;
-    detect= false;
-    if (gpioGetInput(PIN_CAPT_GAUCHE) == 0)
-    {
-       detect = true;
-    }
-    return detect;
-}
-
-bool detec_2_Capt()
-{
-    /*
-    Renvois Vrais si les 2 capteurs detecte une bande noir
-    utilise
-        - detec_Capt_Gauche
-        - detec_Capt_Droit
-    */
-    bool detect;
-    detect = detec_Capt_Droit() && detec_Capt_Gauche();
-    return detect;
-}
-
-void avance_valon(unsigned int vit)
-{
-    /*
-    Avance tout droit d'une distance dis en cm a une vitesse vit
-    utilise
-        - avance_vit
-        - detec_2_Capt
-        - stop
-    */
-   if (detec_2_Capt())
-   {
-    stop();
-   }
-   else
-   {
-    avance_vit(vit);
-   }
-   
-}
-
-void stop()
-{
-    /*
-    Permet d'arreter le robot
-    utilise 
-        - stop_Mot_Droit 
-        - stop_Mot_Gauche
-    */
-   stop_Mot_Droit();
-   stop_Mot_Gauche();
-}
-
+using namespace saeS1;
 
 //SCENARIOS
 void ligneDroite()
@@ -328,7 +106,7 @@ int main() {
 
         //programme
         int debuter;
-        bool exit = true;
+        bool exitboucle = true;
         do
         {
             cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
@@ -342,7 +120,7 @@ int main() {
             
             switch (debuter) {
                 case 0:
-                    exit = false;
+                    exitboucle = false;
                 case 1 :
                     ligneDroite();
                     break;
@@ -352,13 +130,10 @@ int main() {
                 case 3:
                     scenEntrepot();
                     break;
-				case 4:
-                    test();
-                    break;
                 default:
                     break;
             }
-        }while(exit);
+        }while(exitboucle);
 		// Fin instructions
 		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		cout << "Press joystick button to quit." << endl;

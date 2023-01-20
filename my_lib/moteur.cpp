@@ -2,7 +2,7 @@
  * Authors: Timothée Burgmeier & Raphaël Louis Le Denmat
  * Source: https://github.com/Raphael-Nyphalem/Robot-SAE-S1-G4-B11
  *
- *Ce programme à pour but de permettre les test des fonctions du moteur
+ *
  */
 
 #include "moteur.hpp"

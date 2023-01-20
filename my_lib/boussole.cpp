@@ -1,8 +1,8 @@
-/* File: tp8-ex1.cpp
- * Author: Philippe Latu
- * Source: https://github.com/platu/libsensehat-cpp
+/* File: boussole.cpp
+ * Authors: Timothée Burgmeier & Raphaël Louis Le Denmat
+ * Source: https://github.com/Raphael-Nyphalem/Robot-SAE-S1-G4-B11
  *
- * Patron du code source des séances de travaux pratiques
+ *
  */
 
 
@@ -82,7 +82,6 @@ namespace saeS1{
     {
         double angle;
         double min,max;
-        double save_val;
 
         angle = get_compas();
 
