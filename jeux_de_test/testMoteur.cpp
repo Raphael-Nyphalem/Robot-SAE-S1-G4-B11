@@ -19,9 +19,14 @@ using namespace std::chrono; // system_clock, seconds, milliseconds
 using namespace saeS1;
 
 //TEST
+void init()
+{
+    init_gpio_moteur();
+}
+
 void test_avance_Vitesse_Droit()
 {
-    out<< "test avance_Vitesse_Gauche()"<<endl;
+    cout<< "test avance_Vitesse_Gauche()"<<endl;
     avance_Vitesse_Droit(VITESSE_2);
     sleep_for(seconds(5));
     cout<< "test stop_Mot_Droit() "<<endl;
@@ -55,26 +60,49 @@ void test_avance_vit()
 
 int main()
 {
-    int debuter;
-    cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
-        << "1 pour test_avance_Vitesse_Droit();"<< endl << "\t" 
-        << "2 test_avance_Vitesse_Gauche();"<< endl << "\t" 
-        << "3 test_avance_vit();"<< endl << "\t"
-        << "autre stop le programme"<< endl;
+    if(senseInit()) {
+		cout << "Sense Hat initialization Ok." << endl;
+		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Début instructions
+		init();
 
-        cin>> debuter;     
-    switch (debuter) {
-         case 1 :
-            test_avance_Vitesse_Droit();
-            break;
-        case 2 :
-            test_avance_Vitesse_Gauche();
-            break;
-        case 3 :
-            test_avance_vit();
-            break;
-        default:
-            break;
-            }
+        //programme
+        int debuter;
+        bool exitboucle = true;
+        do
+        {
+            cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
+            << "1 pour test_avance_Vitesse_Droit();"<< endl << "\t" 
+            << "2 test_avance_Vitesse_Gauche();"<< endl << "\t" 
+            << "3 test_avance_vit();"<< endl << "\t"
+            << "autre stop le programme"<< endl;
+
+            cin>> debuter;     
+            switch (debuter) {
+                case 0:
+                    exitboucle = false;
+                    break;
+                case 1 :
+                    test_avance_Vitesse_Droit();
+                    break;
+                case 2 :
+                    test_avance_Vitesse_Gauche();
+                    break;
+                case 3 :
+                    test_avance_vit();
+                    break;
+                default:
+                    break;
+                }
+        } while (exitboucle);
+
+        // Fin instructions
+		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		cout << "Press joystick button to quit." << endl;
+		senseWaitForJoystickEnter();
+
+		senseShutdown();
+		cout << "Sense Hat shut down." << endl;
+	}
 
 }
