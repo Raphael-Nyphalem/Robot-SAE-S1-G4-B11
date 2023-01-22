@@ -7,11 +7,16 @@
 #include <chrono>
 
 namespace saeS1{
-void get_temps(std::chrono::steady_clock::time_point &temps);
+
+    typedef struct{
+        std::chrono::steady_clock::time_point t;
+    }temps_t;
+
+void get_temps(temps_t &temps);
 
 bool detect_temps(
     double diff,
-    std::chrono::steady_clock::time_point &tempsAVerifier);
+    temps_t &tempsAVerifier);
 
 
 } //namespace saeS1

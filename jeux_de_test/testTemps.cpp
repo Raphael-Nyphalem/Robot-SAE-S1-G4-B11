@@ -15,7 +15,7 @@ using namespace saeS1;
 
 int main()
 {
-   steady_clock::time_point temps0;
+   temps_t temps0;
    saeS1::get_temps(temps0);
    do
    {
@@ -23,7 +23,5 @@ int main()
     cout<<"dans la boucle\n";
    } while (!(saeS1::detect_temps(10,temps0)));
    cout<<"or de la boucle\n";
-
-
 
 }

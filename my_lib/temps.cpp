@@ -12,17 +12,17 @@ using namespace std::chrono;
 
 namespace saeS1{
 
-    void get_temps(steady_clock::time_point &temps)
+    void get_temps(temps_t &temps)
     {
-        temps = steady_clock::now();
+        temps.t = steady_clock::now();
     }
 
-    bool detect_temps(double diff,steady_clock::time_point &tempsAVerifier)
+    bool detect_temps(double diff,temps_t &tempsAVerifier)
     {
-        steady_clock::time_point tempsActuel;
+        temps_t tempsActuel;
         get_temps(tempsActuel);
 
-        duration<double> time_span = duration_cast<duration<double>>(tempsActuel-tempsAVerifier);
+        duration<double> time_span = duration_cast<duration<double>>(tempsActuel.t-tempsAVerifier.t);
         if (time_span.count() >= diff)
         {
             return true;
