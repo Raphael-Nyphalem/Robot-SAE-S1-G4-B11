@@ -36,18 +36,6 @@ void ligneDroite()
     
 	do
 	{
-	
-        /*
-		if (detect_angle(cap))
-		{
-			avance_valon(vit);
-		}
-		else
-		{
-			correction_angle(cap, vit);
-		}
-        */
-
 		avance_valon(vit);
 		sleep_for(milliseconds(100));
 	}while(true);
@@ -92,11 +80,6 @@ void scenEntrepot()
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 int main() {
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Début variables
-
-	// Fin variables
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	if(senseInit()) {
 		cout << "Sense Hat initialization Ok." << endl;

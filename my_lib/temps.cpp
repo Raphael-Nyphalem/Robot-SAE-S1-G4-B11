@@ -9,15 +9,30 @@
 
 using namespace std;
 using namespace std::chrono;
+
 namespace saeS1{
 
-    void get_temps(auto &getTime)
+    void get_temps(steady_clock::time_point &temps)
     {
-        getTime = 
+        temps = steady_clock::now();
     }
 
-    bool detect_temps()
+    bool detect_temps(double diff,steady_clock::time_point &tempsAVerifier)
     {
+        steady_clock::time_point tempsActuel;
+        get_temps(tempsActuel);
+
+        duration<double> time_span = duration_cast<duration<double>>(tempsActuel-tempsAVerifier);
+        if (time_span.count() >= diff)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+        
     }
 
 } //namespace saeS1
