@@ -19,6 +19,8 @@
 #include <chrono>
 #include <thread>
 
+#include "my_lib/avanceCompose.hpp"
+
 #include <sensehat.h>
 
 using namespace std;

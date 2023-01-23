@@ -22,9 +22,12 @@
 #include <sensehat.h>
 
 
+#include "my_lib/avanceCompose.hpp"
+
 #include "my_lib/boussole.hpp"
 #include "my_lib/capteur.hpp"
 #include "my_lib/moteur.hpp"
+#include "my_lib/temps.hpp"
 
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
@@ -34,15 +37,15 @@ using namespace saeS1;
 //SCENARIOS
 void ligneDroite()
 {
-    //Permet au robot d'avancer en ligne droite
+    //Permet au robot d'avancer en ligne droite durant 7s
     cout << "Scénario ligne droite" <<endl;
     unsigned int vit = VITESSE_2;
-    
+    temps_t temps0;
+    get_temps(temps0);
 	do
 	{
 		avance_valon(vit);
-		sleep_for(milliseconds(100));
-	}while(true);
+	}while(!(detect_temps(7,temps0)));
 }
 
 //Scénar 1
@@ -53,11 +56,7 @@ void suiviLigneCourbe()
     cout << "Scénario ligne courbe" <<endl;
    do
     {
-         if(detec_2_Capt())
-        {
-            stop();
-        }
-        else if (detec_Capt_Droit())
+        if (detec_Capt_Droit())
         {
             avance_Vitesse_Gauche(VITESSE_1);
         }
@@ -69,9 +68,8 @@ void suiviLigneCourbe()
         {
             avance_valon(VITESSE_4);
         }
-    } while (true);
-
-   
+    } while (detec_2_Capt());
+    stop();
 }
 
 //Scénar 3
@@ -84,16 +82,10 @@ void scenEntrepot()
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 int main() {
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Début variables
-
-	// Fin variables
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 	if(senseInit()) {
 		cout << "Sense Hat initialization Ok." << endl;
-		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		// Début instructions
+
+        //init
 		init();
 
         //programme
@@ -109,7 +101,6 @@ int main() {
             cin>> debuter;        
             
             //selectionneur de scénario (mode)
-            
             switch (debuter) {
                 case 0:
                     exit = false;
@@ -129,6 +120,8 @@ int main() {
                     break;
             }
         }while(exit);
+
+
 		// Fin instructions
 		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		cout << "Press joystick button to quit." << endl;
@@ -137,6 +130,5 @@ int main() {
 		senseShutdown();
 		cout << "Sense Hat shut down." << endl;
 	}
-
 	return EXIT_SUCCESS;
 }

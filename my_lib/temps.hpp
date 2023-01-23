@@ -3,7 +3,6 @@
 #define SAES1_TEMPS_HPP
 
 #include <iostream>
-#include <ctime>
 #include <chrono>
 
 namespace saeS1{

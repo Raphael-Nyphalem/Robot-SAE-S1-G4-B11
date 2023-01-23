@@ -7,7 +7,6 @@
 
 #include "temps.hpp"
 
-using namespace std;
 using namespace std::chrono;
 
 namespace saeS1{

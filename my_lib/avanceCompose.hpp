@@ -2,9 +2,6 @@
 #ifndef SAES1_TEMPS_HPP
 #define SAES1_TEMPS_HPP
 
-
-#include <chrono>
-
 #include "moteur.hpp"
 #include "boussole.hpp"
 #include "capteur.hpp"

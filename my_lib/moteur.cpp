@@ -7,11 +7,6 @@
 
 #include "moteur.hpp"
 
-using namespace std;
-using namespace std::this_thread; // sleep_for, sleep_until
-using namespace std::chrono; // system_clock, seconds, milliseconds
-
-
 namespace saeS1{
 
 

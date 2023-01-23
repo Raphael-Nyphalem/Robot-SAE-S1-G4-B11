@@ -2,10 +2,6 @@
 #ifndef SAES1CAPTEUR_HPP
 #define SAES1CAPTEUR_HPP
 
-#include <iostream>
-#include <iomanip>
-#include <chrono>
-#include <thread>
 
 #include <sensehat.h>
 
