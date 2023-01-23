@@ -15,12 +15,13 @@ namespace saeS1{
     void correction_angle(double angle_cap)
     {
         /*
-        corrige l'angle en fonction a quelle point il est deporte de sa direction
+        corrige la trajectoire du robot en direction du cap
         utilise
             - avance_Vitesse_Droit
             - avance_Vitesse_Gauche
-            - get_angle
-            - detect_angle
+            - get_compas
+            - calcul_Inverse_Cap
+            - calcul_Min_Max
         */
         double min,max;
         double angle;
@@ -83,23 +84,28 @@ namespace saeS1{
 
     void avance_Cap(double cap)
     {
-        do
+        /*
+        Avance en direction d'un cap donnez
+        utilise
+            - detect_angle
+            - avance_valon
+            - correction_angle
+        */
+       if(detect_angle(cap))
         {
-            if(detect_angle(cap))
-            {
-                avance_valon(VITESSE_4);
-            }
-            else
-            {
-                correction_angle(cap);
-            }
-        } while (true);
+            avance_valon(VITESSE_4);
+        }
+        else
+        {
+            correction_angle(cap);
+        }
     }
 
     bool avance_valon(unsigned int vit)
     {
         /*
-        Avance tout droit d'une distance dis en cm a une vitesse vit
+        Avance tout droit jusqu'a un valon a une vitesse donné
+        Renvoie vrais lorsque on est en mouvement
         utilise
             - avance_vit
             - detec_2_Capt
@@ -120,6 +126,16 @@ namespace saeS1{
         
     bool avance_temps_cap(double temps, double cap, temps_t temps0)
     {
+        /*
+        Avance tout droit 
+            en direction d'un cap donnez
+            durant un temps donnez
+        Renvoie vrais lorsque on est en mouvement
+        utilise
+            - avance_vit
+            - detec_2_Capt
+            - stop
+        */
         if (detect_temps(temps,temps0))
         {
             avance_Cap(cap);
@@ -131,5 +147,6 @@ namespace saeS1{
             return false;
         }
     }
+
 
 } //namespace saeS1

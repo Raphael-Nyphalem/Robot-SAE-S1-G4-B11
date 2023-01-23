@@ -41,6 +41,7 @@ namespace saeS1{
         /*
         Detecte lorsque la difference de temps (entre un temps0 et le temps actuel de la machine) 
         est supperieur a un seuil
+        Renvoie vrais lorsque ce temps est supperieur au seuil
         utilise
             temps_Passe
         */

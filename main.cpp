@@ -37,15 +37,20 @@ using namespace saeS1;
 //SCENARIOS
 void ligneDroite()
 {
-    //Permet au robot d'avancer en ligne droite durant 7s
+    //Permet au robot d'avancer en ligne droite durant 7s ou jusqu'a qu'il ateingne un valon
     cout << "Scénario ligne droite" <<endl;
     unsigned int vit = VITESSE_2;
     temps_t temps0;
     get_temps(temps0);
+
+    bool detectValon;
 	do
 	{
-		avance_valon(vit);
-	}while(!(detect_temps(7,temps0)));
+		detectValon = avance_valon(vit);
+	}while(
+        (!(detect_temps(7,temps0))
+        && detectValon())
+    );
 }
 
 //Scénar 1
@@ -54,6 +59,7 @@ void suiviLigneCourbe()
     //Permet au robot de suivre une ligne avec des virages
 
     cout << "Scénario ligne courbe" <<endl;
+    bool detectValon= false;
    do
     {
         if (detec_Capt_Droit())
@@ -66,9 +72,9 @@ void suiviLigneCourbe()
         }
         else
         {
-            avance_valon(VITESSE_4);
+            detectValon = not(avance_valon(VITESSE_4));
         }
-    } while (detec_2_Capt());
+    } while (detectValon);
     stop();
 }
 
