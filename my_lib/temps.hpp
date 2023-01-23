@@ -12,11 +12,18 @@ namespace saeS1{
         std::chrono::steady_clock::time_point t;
     }temps_t;
 
-void get_temps(temps_t &temps);
+void get_temps(
+    temps_t &temps
+    );
+
+double temps_Passe(
+    temps_t &temps0
+    );
 
 bool detect_temps(
     double diff,
-    temps_t &tempsAVerifier);
+    temps_t &temps0);
+
 
 
 } //namespace saeS1

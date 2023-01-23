@@ -17,13 +17,18 @@ namespace saeS1{
         temps.t = steady_clock::now();
     }
 
-    bool detect_temps(double diff,temps_t &tempsAVerifier)
+    double temps_Passe(temps_t &temps0)
     {
         temps_t tempsActuel;
         get_temps(tempsActuel);
 
-        duration<double> time_span = duration_cast<duration<double>>(tempsActuel.t-tempsAVerifier.t);
-        if (time_span.count() >= diff)
+        duration<double> temps_diff = duration_cast<duration<double>>(tempsActuel.t-temps0.t);
+        return temps_diff.count();
+    }
+
+    bool detect_temps(double diff,temps_t &temps0)
+    {
+        if (temps_Passe(temps0) >= diff)
         {
             return true;
         }
@@ -31,8 +36,8 @@ namespace saeS1{
         {
             return false;
         }
-        
-        
     }
+
+
 
 } //namespace saeS1
