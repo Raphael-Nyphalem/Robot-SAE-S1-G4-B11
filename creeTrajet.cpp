@@ -1,14 +1,16 @@
 
 #include<iostream>
-#include "my_lib/robot.hpp"
 
+
+const int MAX_FONCTIONS = 30;
+const int MAX_PARAMETRE = 6;
 
 using namespace std;
-using namespace saeS1;
-
 void param_avance_valon(double tabParametre[MAX_PARAMETRE])
 {
     tabParametre[0]=1;
+    cout << "Entrez les paramètres de temps et de cap : " <<endl;
+    tabParametre[2]
 
 }
 
@@ -34,14 +36,22 @@ void param_tourne_cap(double tabParametre[MAX_PARAMETRE])
 
 }
 
-
+void init_tab_0(double tabRobot[MAX_FONCTIONS][MAX_PARAMETRE])
+    {
+        for (int f = 0; f < MAX_FONCTIONS; f++)
+        {
+            for (int p = 0; p < MAX_PARAMETRE; p++)
+            {
+                tabRobot[f][p]=0;
+            } 
+        }
+    }
 
 void create_etape(double tabParametre[MAX_PARAMETRE])
 {
     double fonction;
     int fonction_int;
-        
-    bool avance_temps_cap(double temps, double cap, tem
+
     cout<<"donnez fonction a utiliser\n"
         <<"0 pour stop\n"
         <<"1 pour avance valon\n"
@@ -59,23 +69,64 @@ void create_etape(double tabParametre[MAX_PARAMETRE])
         break;
     
     case 1:
+        param_avance_valon(tabParametre);
+        break;
 
+    case 2:
+        param_avance_temps_cap(tabParametre);
+        break;
+
+    case 3:
+        param_tourne_cap(tabParametre);
         break;
     
     default:
         break;
     }
-
-
 }
 
+void cree_tab(double tabParametre[MAX_FONCTIONS][MAX_PARAMETRE])
+{
+    int a;
+    for (int i = 0; i < MAX_FONCTIONS; i++)
+    {
+
+        cout<<" codage étape "<<i<<endl;
+        create_etape(tabParametre[i]);
+        cout<<"\n continue ? 0 non, reste oui\n";
+        cin>>a;
+        if (a==0)
+        {
+            i = MAX_FONCTIONS +1;
+        }
+        
+    }
+
+
+    
+}
+
+void affiche_tab(double tabParametre[MAX_FONCTIONS][MAX_PARAMETRE])
+{
+    cout<<"{";
+    for (int f = 0; f < MAX_FONCTIONS; f++)
+    {
+        cout<<"{";
+        for (int p = 0; p < MAX_PARAMETRE; p++)
+        {
+            cout << tabParametre[f][p]<<",";
+        }
+        cout<<"}\n";
+    }
+    cout<<"}\n";
+    
+}
 
 int main(int argc, char const *argv[])
 {
-    double trajet[MAX_FONCTIONS][MAX_PARAMETRE]
+    double trajet[MAX_FONCTIONS][MAX_PARAMETRE];
     init_tab_0(trajet);
-    
-
-
+    cree_tab(trajet);
+    affiche_tab(trajet);
     return 0;
 }

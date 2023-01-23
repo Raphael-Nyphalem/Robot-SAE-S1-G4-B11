@@ -129,7 +129,7 @@ namespace saeS1{
     {
         for (int f = 0; f < MAX_FONCTIONS; f++)
         {
-            for (int p = 0; p < count; p++)
+            for (int p = 0; p < MAX_PARAMETRE; p++)
             {
                 tabRobot[f][p]=0;
             } 

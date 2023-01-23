@@ -70,6 +70,7 @@ int main() {
             switch (debuter) {
                 case 0:
                     exit = false;
+                    break;
                 case 1 :
                     test_1();
                     break;
