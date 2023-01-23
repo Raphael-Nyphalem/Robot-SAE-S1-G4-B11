@@ -2,15 +2,17 @@
 #include<iostream>
 
 
-const int MAX_FONCTIONS = 30;
+const int MAX_FONCTIONS = 20;
 const int MAX_PARAMETRE = 6;
 
 using namespace std;
 void param_avance_valon(double tabParametre[MAX_PARAMETRE])
 {
+    int vit;
     tabParametre[0]=1;
-    cout << "Entrez les paramètres de temps et de cap : " <<endl;
-    tabParametre[2]
+    cout << "Entrez la vitesse  " <<endl;
+    cin>>vit;
+    tabParametre[2]=vit;
 
 }
 
@@ -18,7 +20,7 @@ void param_avance_temps_cap(double tabParametre[MAX_PARAMETRE])
 {
     double temps, cap;
     tabParametre[0]=2;
-    cout << "Entrez les paramètres de temps et de cap : " <<endl;
+    cout << "Entrez les paramètres de temps et de cap (metre -1 pour cet a le cap tout droit) : " <<endl;
     cin >> temps;
     cin >> cap;
 
@@ -87,23 +89,11 @@ void create_etape(double tabParametre[MAX_PARAMETRE])
 
 void cree_tab(double tabParametre[MAX_FONCTIONS][MAX_PARAMETRE])
 {
-    int a;
     for (int i = 0; i < MAX_FONCTIONS; i++)
     {
-
         cout<<" codage étape "<<i<<endl;
         create_etape(tabParametre[i]);
-        cout<<"\n continue ? 0 non, reste oui\n";
-        cin>>a;
-        if (a==0)
-        {
-            i = MAX_FONCTIONS +1;
-        }
-        
-    }
-
-
-    
+    }   
 }
 
 void affiche_tab(double tabParametre[MAX_FONCTIONS][MAX_PARAMETRE])
@@ -114,12 +104,20 @@ void affiche_tab(double tabParametre[MAX_FONCTIONS][MAX_PARAMETRE])
         cout<<"{";
         for (int p = 0; p < MAX_PARAMETRE; p++)
         {
-            cout << tabParametre[f][p]<<",";
+            cout << tabParametre[f][p];
+            if (p<(MAX_PARAMETRE-1))
+            {
+                cout<<",";
+            }
+            
         }
-        cout<<"}\n";
+        cout<<"}";
+        if (f<(MAX_FONCTIONS-1))
+            {
+                cout<<",";
+            }
     }
     cout<<"}\n";
-    
 }
 
 int main(int argc, char const *argv[])

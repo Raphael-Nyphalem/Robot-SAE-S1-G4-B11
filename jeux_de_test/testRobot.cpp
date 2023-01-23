@@ -28,7 +28,37 @@ void test_1()
 {
     //Permet au robot d'avancer en ligne droite (simple) durant 1s
     cout << "Scénario avance_valon " <<endl;
-    double trajet1[MAX_FONCTIONS][MAX_PARAMETRE];
+    //trajet base A
+    double trajet1[MAX_FONCTIONS][MAX_PARAMETRE]=
+        {
+        {1,1,100,0,0,0},
+        {2,1,0.5,-1,0,0},
+        {3,1,90,0,0,0},
+        {1,1,100,0,0,0},
+        {3,1,90,0,0,0},
+
+        {1,1,100,0,0,0},
+        {2,1,1,-1,0,0},
+        {1,1,100,0,0,0},
+        {3,1,-90,0,0,0},
+        {1,1,100,0,0,0},
+
+        {0,1,0,0,0,0},
+        {0,0,0,0,0,0},
+        {0,0,0,0,0,0},
+        {0,0,0,0,0,0},
+        {0,0,0,0,0,0},
+
+        {0,0,0,0,0,0},
+        {0,0,0,0,0,0},
+        {0,0,0,0,0,0},
+        {0,0,0,0,0,0},
+        {0,0,0,0,0,0}};
+
+    
+
+    robot(trajet1);
+
     
 
 }

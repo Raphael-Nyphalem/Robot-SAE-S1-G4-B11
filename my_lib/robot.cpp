@@ -12,7 +12,6 @@ namespace saeS1{
 
     void robot(double tabRobot[MAX_FONCTIONS][MAX_PARAMETRE])
     {
-        double fonction;
         for (int i = 0; i < MAX_FONCTIONS; i++)
         {
             execute_etape(tabRobot[i]); 
@@ -110,21 +109,16 @@ namespace saeS1{
         
     }
 
-    void edit_etape(double tabParametre[MAX_PARAMETRE])
-    {
-
-    }
-
+    /*
     void copie_etape(double tabParametre[MAX_PARAMETRE],double tabACopier[MAX_PARAMETRE])
     {
-        
-    }
+        for (int i = 0; i < MAX_PARAMETRE; i++)
+        {
+            tabParametre[i]=tabACopier[i];
+        }
+    }*/
 
-    void affiche_etape(double tabParametre[MAX_PARAMETRE])
-    {
-        
-    }
-
+    /*
     void init_tab_0(double tabRobot[MAX_FONCTIONS][MAX_PARAMETRE])
     {
         for (int f = 0; f < MAX_FONCTIONS; f++)
@@ -135,6 +129,7 @@ namespace saeS1{
             } 
         }
     }
+    */
 
 
 } //namespace saeS1
