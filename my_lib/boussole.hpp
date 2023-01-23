@@ -2,6 +2,13 @@
 #ifndef SAES1_BOUSSOLE_HPP
 #define SAES1_BOUSSOLE_HPP
 
+
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+#include <thread>
+#include <string>
+
 #include <sensehat.h>
 
 namespace saeS1{

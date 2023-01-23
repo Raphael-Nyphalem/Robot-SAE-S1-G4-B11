@@ -5,18 +5,24 @@
  *
  */
 
+
+
 #include "avanceCompose.hpp"
-#include <iostream>
+
+
+using namespace std;
+using namespace std::this_thread; // sleep_for, sleep_until
+using namespace std::chrono; // system_clock, seconds, milliseconds
 
 namespace saeS1{
 
     void init()
     {
-        std::cout << "~~debut init~~\n"
-        init_gpio();
+        std::cout << "~~debut init~~\n";
+        init_gpio_capteur();
         init_Compas();
         init_gpio_moteur();
-        std::cout << "~~fin init~~\n"
+        std::cout << "~~fin init~~\n";
     }
 
     void correction_angle(double angle_cap)
@@ -60,13 +66,11 @@ namespace saeS1{
                 {
                     avance_Vitesse_Gauche(0);
                     avance_Vitesse_Droit(VITESSE_4);
-                    cout << "droite\n";
                 }
                 else if ((angle < min) && angle > nonCap)
                 {
                     avance_Vitesse_Gauche(VITESSE_4);
                     avance_Vitesse_Droit(0);
-                    cout << "gauche\n";
                 }
             }
             else 
@@ -75,18 +79,16 @@ namespace saeS1{
                 {
                     avance_Vitesse_Gauche(VITESSE_4);
                     avance_Vitesse_Droit(0);
-                    cout << "droite\n";
                 } 
                 else if((angle > max) && (angle < nonCap))
                 {
                     avance_Vitesse_Gauche(0);
                     avance_Vitesse_Droit(VITESSE_4);
-                    cout << "gauche\n";
                 }
             }
             
         }
-        //cout << min << " " << max << "| angle: " << angle<<"| cap: "<<angle_cap<< "| non cap: "<<nonCap <<endl;
+        //std::cout << min << " " << max << "| angle: " << angle<<"| cap: "<<angle_cap<< "| non cap: "<<nonCap <<endl;
     }
 
     void avance_Cap(double cap)
@@ -145,14 +147,15 @@ namespace saeS1{
         */
         if (detect_temps(temps,temps0))
         {
-            avance_Cap(cap);
-            return true;
-        }
-        else
-        {
             stop();
             return false;
         }
+        else
+        {
+            avance_Cap(cap);
+            return true;
+        }
+        return false;
     }
 
     bool tourne_cap(double angle_tourne)
@@ -160,7 +163,7 @@ namespace saeS1{
         double cap = calcul_Nouveau_Cap(angle_tourne);
         if (detect_angle(cap))
         {
-            stop()
+            stop();
             return false;
         }
         else

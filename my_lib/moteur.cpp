@@ -42,11 +42,7 @@ namespace saeS1{
             gpio raspberry
         */
         unsigned int puissance;
-        if (vit <0)
-        {
-            puissance = 0;
-        }
-        else if (vit>100)
+        if (vit>100)
         {
             puissance =100;
         }
@@ -68,11 +64,7 @@ namespace saeS1{
             gpio raspberry
         */
         unsigned int puissance;
-        if (vit <0)
-        {
-            puissance = 0;
-        }
-        else if (vit>100)
+        if (vit>100)
         {
             puissance =100;
         }
