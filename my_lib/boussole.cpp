@@ -7,6 +7,7 @@
 
 
 #include "boussole.hpp"
+
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono;	  // system_clock, seconds, milliseconds
@@ -90,7 +91,7 @@ namespace saeS1{
 
     double calcul_Nouveau_Cap(double direction)
     {
-        double cap = get_compas()
+        double cap = get_compas();
 
         double nouveauCap;
 
@@ -100,7 +101,7 @@ namespace saeS1{
         }
         else if ((cap + direction)>360)
         {
-            nouveauCap = cap + direction - 360
+            nouveauCap = cap + direction - 360;
         }
         else
         {

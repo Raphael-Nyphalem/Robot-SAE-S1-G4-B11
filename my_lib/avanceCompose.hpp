@@ -2,13 +2,19 @@
 #ifndef SAES1_TEMPS_HPP
 #define SAES1_TEMPS_HPP
 
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+#include <thread>
+#include <string>
+
 #include "moteur.hpp"
 #include "boussole.hpp"
 #include "capteur.hpp"
-#include "temps.hpp"
+#include "foncTemps.hpp"
 
 namespace saeS1{
-
+    
     void init();
 
     void correction_angle
