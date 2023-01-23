@@ -1,4 +1,4 @@
-/* File: capteur.cpp
+/* File: avanceCompose.cpp
  * Authors: Timothée Burgmeier & Raphaël Louis Le Denmat
  * Source: https://github.com/Raphael-Nyphalem/Robot-SAE-S1-G4-B11
  *
@@ -79,16 +79,12 @@ namespace saeS1{
             
         }
         //cout << min << " " << max << "| angle: " << angle<<"| cap: "<<angle_cap<< "| non cap: "<<nonCap <<endl;
-
     }
-
 
     void avance_Cap(double cap)
     {
-        
         do
         {
-            
             if(detect_angle(cap))
             {
                 avance_valon(VITESSE_4);
@@ -97,11 +93,10 @@ namespace saeS1{
             {
                 correction_angle(cap);
             }
-
         } while (true);
     }
 
-    void avance_valon(unsigned int vit)
+    bool avance_valon(unsigned int vit)
     {
         /*
         Avance tout droit d'une distance dis en cm a une vitesse vit
@@ -113,13 +108,28 @@ namespace saeS1{
         if (detec_2_Capt())
         {
             stop();
+            return false;
         }
         else
         {
             avance_vit(vit);
+            return true;
         }
     
     }
         
+    bool avance_temps_cap(double temps, double cap, temps_t temps0)
+    {
+        if (detect_temps(temps,temps0))
+        {
+            avance_Cap(cap);
+            return true;
+        }
+        else
+        {
+            stop();
+            return false;
+        }
+    }
 
 } //namespace saeS1

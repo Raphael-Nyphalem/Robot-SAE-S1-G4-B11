@@ -20,6 +20,14 @@ namespace saeS1{
     // Début sous-programmes
     void init_gpio_moteur()
     {
+        /*
+        Permet d'optenir d'initialiser 
+        les channel des moteurs
+        leur applique une période
+        stop les moteur a l'init
+        utilise
+        gpio rapsberry
+        */
         pwmInit(CHAN_MOT_DROIT);
         pwmPeriod(CHAN_MOT_DROIT, PERIODE_MS);
         pwmDutyCycle(CHAN_MOT_DROIT,0);
@@ -88,8 +96,6 @@ namespace saeS1{
         utilise
             - avance_Vitesse_Droit
             - avance_Vitesse_Gauche
-            - detect_angle
-            - correction_angle
         */
         avance_Vitesse_Droit(vit);
         avance_Vitesse_Gauche(vit);
@@ -101,7 +107,7 @@ namespace saeS1{
         /*
         arret du moteur Gauche
         utilise 
-            - gestion_mot_Gauche
+            gpio raspberry
         */
         pwmDutyCycle(CHAN_MOT_GAUCHE,0);
     }
@@ -111,7 +117,7 @@ namespace saeS1{
         /*
         arret du moteur Gauche
         utilise 
-            - gestion_mot_Gauche
+            gpio raspberry
         */
         pwmDutyCycle(CHAN_MOT_DROIT,0);
     }

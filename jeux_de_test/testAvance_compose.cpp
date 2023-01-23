@@ -24,6 +24,7 @@ using namespace saeS1;
 void init()
 {
     init_gpio();
+    init_Compas();
 }
 
 //TEST
@@ -40,7 +41,15 @@ void test_Avance_Valon()
 }
 
 
+void test_Avance_cap_temps()
+{
+    //Permet au robot d'avancer en ligne droite vers OUEST durant 5s
+    cout << "Scénario avance_valon " <<endl;
+    temps_t  temps0;
+    get_temps(temps0);
+    avance_temps_cap(5,90,temps0);
 
+}
 
 
 // Fin sous-programmes

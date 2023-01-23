@@ -14,15 +14,14 @@ using namespace std::chrono;	  // system_clock, seconds, milliseconds
 
 namespace saeS1{
 
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Début constantes
-
-    // Fin constantes
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
     void init_Compas()
     {
+        /*
+        Permet d'optenir d'initialiser la boussole
+        utilise
+        <sensehat.h>
+        get_compas()
+        */
         int cpt;
         senseSetIMUConfig(true, true, true);
         for (cpt = 0; cpt < INT_MESURES; cpt++)
@@ -34,11 +33,21 @@ namespace saeS1{
 
     double get_compas()
     {
+        /*
+        Permet d'optenir l'angle actuel de la boussole
+        utilise
+        <sensehat.h>
+        */
         return senseGetCompass();
     }
 
     bool calcul_Min_Max (double &min,double &max,double cap)
     {
+        /*
+        Permet de calculer une plage autour du cap a suivre MIN, MAX
+        Prend en compte lorsque le cap est proche de 0 grave a la varible inverse
+        Renvoie vrais lorsque on est dans le cas inverse
+        */
         double save_val;
         bool inverse = false;
 
@@ -64,6 +73,7 @@ namespace saeS1{
     bool calcul_Inverse_Cap(double cap, double &nonCap)
     {
         /*
+            Permet de calculer l'angle opposé au cap
             Renvoie vrai si le cap est supérieur à 180 et calcule l'opposé du cap.
         */
         if(cap < 180)
@@ -80,6 +90,14 @@ namespace saeS1{
 
     bool detect_angle(double cap)
     {
+        /*
+        Permet de détecter si le sensor (ou le robot dans notre cas)
+        est dans le cap 
+        utilise
+        get_compas()
+        calcul_Min_Max()
+
+        */
         double angle;
         double min,max;
 
