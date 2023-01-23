@@ -6,11 +6,18 @@
  */
 
 #include "avanceCompose.hpp"
-
-
+#include <iostream>
 
 namespace saeS1{
 
+    void init()
+    {
+        std::cout << "~~debut init~~\n"
+        init_gpio();
+        init_Compas();
+        init_gpio_moteur();
+        std::cout << "~~fin init~~\n"
+    }
 
     void correction_angle(double angle_cap)
     {
@@ -148,5 +155,19 @@ namespace saeS1{
         }
     }
 
+    bool tourne_cap(double angle_tourne)
+    {
+        double cap = calcul_Nouveau_Cap(angle_tourne);
+        if (detect_angle(cap))
+        {
+            stop()
+            return false;
+        }
+        else
+        {
+            correction_angle(cap);
+            return true;
+        }
+    }
 
 } //namespace saeS1

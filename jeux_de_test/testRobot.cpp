@@ -13,7 +13,7 @@
 
 #include <sensehat.h>
 
-#include "../my_lib/avanceCompose.hpp"
+#include "../my_lib/robot.hpp"
 
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
@@ -24,28 +24,16 @@ using namespace saeS1;
 
 
 //TEST
-void test_Avance_Valon()
+void test_1()
 {
     //Permet au robot d'avancer en ligne droite (simple) durant 1s
     cout << "Scénario avance_valon " <<endl;
-    unsigned int vit = VITESSE_2;
-
-	avance_valon(vit);
-	sleep_for(milliseconds(1000));
-    stop();
+    double trajet1[MAX_FONCTIONS][MAX_PARAMETRE];
+    
 
 }
 
 
-void test_Avance_cap_temps()
-{
-    //Permet au robot d'avancer en ligne droite vers OUEST durant 5s
-    cout << "Scénario test_Avance_cap_temps " <<endl;
-    temps_t  temps0;
-    get_temps(temps0);
-    avance_temps_cap(5,90,temps0);
-
-}
 
 
 // Fin sous-programmes
@@ -74,8 +62,7 @@ int main() {
         {
             cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
                 << "0 pour stop le programme"<< endl << "\t" 
-                << "1 pour le test_Avance_Valon"<<endl
-                << "2 pour le test_Avance_cap_temps (5s) direction 90"<<endl;
+                << "1 pour le "<<endl;
             cin>> debuter;        
             
             //selectionneur de scénario (mode)
@@ -83,12 +70,8 @@ int main() {
             switch (debuter) {
                 case 0:
                     exit = false;
-                    break;
                 case 1 :
-                    test_Avance_Valon();
-                    break;
-                case 2:
-                    test_Avance_cap_temps();
+                    test_1();
                     break;
                 default:
                     break;

@@ -88,6 +88,28 @@ namespace saeS1{
         }
     }
 
+    double calcul_Nouveau_Cap(double direction)
+    {
+        double cap = get_compas()
+
+        double nouveauCap;
+
+        if((cap + direction)<0)
+        {
+            nouveauCap = cap + direction + 360;
+        }
+        else if ((cap + direction)>360)
+        {
+            nouveauCap = cap + direction - 360
+        }
+        else
+        {
+           nouveauCap = cap + direction;
+        }
+        return nouveauCap;
+        
+    }
+
     bool detect_angle(double cap)
     {
         /*

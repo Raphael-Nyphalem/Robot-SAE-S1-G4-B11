@@ -9,6 +9,8 @@
 
 namespace saeS1{
 
+    void init();
+
     void correction_angle
     (
         double angle_cap
@@ -24,11 +26,17 @@ namespace saeS1{
         unsigned int vit
     );
 
-    bool avance_temps_cap(
+    bool avance_temps_cap
+    (
         double temps, 
         double cap, 
-        temps_t temps0)
-    };
+        temps_t temps0
+    );
+
+    bool tourne_cap
+    (
+        double angle_tourne
+    );
     
 
 } //namespace saeS1
