@@ -23,6 +23,7 @@ namespace saeS1{
     const int VITESSE_2 = 50;
     const int VITESSE_3 = 75;
     const int VITESSE_4 = 100;
+    const int VITESSE_ROBOT = 100;
 
     void 
     init_gpio_moteur();

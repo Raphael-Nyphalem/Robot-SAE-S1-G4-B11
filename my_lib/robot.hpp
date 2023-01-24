@@ -54,10 +54,7 @@ namespace saeS1{
         double tabParametre[MAX_PARAMETRE]
     );
 
-    void edit_etape
-    (
-        double tabParametre[MAX_PARAMETRE]
-    );
+    /*
 
     void copie_etape
     (
@@ -69,11 +66,7 @@ namespace saeS1{
     (
         double tabParametre[MAX_PARAMETRE]
     );
-
-    void init_tab_0
-    (
-        double tabRobot[MAX_FONCTIONS][MAX_PARAMETRE]
-    );
+    */
 
 
 } //namespace saeS1

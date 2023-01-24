@@ -21,16 +21,25 @@ namespace saeS1{
     //execute
     void execute_stop_0(double tabParametre[MAX_PARAMETRE])
     {
-        stop();
-        tabParametre[1]=0;
+        while (tabParametre[1]!=0)
+        {
+            stop();
+            tabParametre[1]=0;
+        }
     }
 
     void execute_avanceValon_1(double tabParametre[MAX_PARAMETRE])
     {
-        int vit = tabParametre[2];
+        double cap = tabParametre[2];
+
+        if (cap < 0 or cap > 360)
+        {
+            cap = get_compas();
+        }
+        
         do
         {
-            tabParametre[1] = avance_valon(vit);
+            tabParametre[1] = avance_valon(cap);
         } while (detect_etape_en_cours(tabParametre[1]));
     }
 

@@ -8,11 +8,11 @@ const int MAX_PARAMETRE = 6;
 using namespace std;
 void param_avance_valon(double tabParametre[MAX_PARAMETRE])
 {
-    int vit;
+    double cap;
     tabParametre[0]=1;
-    cout << "Entrez la vitesse  " <<endl;
-    cin>>vit;
-    tabParametre[2]=vit;
+    cout << "Entrez un cap (metre -1 pour cet a le cap tout droit) " <<endl;
+    cin>>cap;
+    tabParametre[2]=cap;
 
 }
 

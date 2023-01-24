@@ -29,7 +29,7 @@ namespace saeS1{
 
     bool avance_valon
     (
-        unsigned int vit
+        double cap
     );
 
     bool avance_temps_cap

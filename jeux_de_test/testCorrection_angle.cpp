@@ -32,7 +32,8 @@ void test_cap()
 {
     double cap;
     cap = 1; //get_compas();
-    avance_Cap(cap);
+    while(avance_valon(cap)){}
+    
 }
 
 

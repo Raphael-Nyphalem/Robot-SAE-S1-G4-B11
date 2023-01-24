@@ -16,6 +16,8 @@ using namespace std::chrono; // system_clock, seconds, milliseconds
 
 namespace saeS1{
 
+    // init
+    
     void init()
     {
         std::cout << "~~debut init~~\n";
@@ -24,6 +26,8 @@ namespace saeS1{
         init_gpio_moteur();
         std::cout << "~~fin init~~\n";
     }
+
+    //fontion interne
 
     void correction_angle(double angle_cap)
     {
@@ -97,12 +101,12 @@ namespace saeS1{
         Avance en direction d'un cap donnez
         utilise
             - detect_angle
-            - avance_valon
+            - avance_vit
             - correction_angle
         */
        if(detect_angle(cap))
         {
-            avance_valon(VITESSE_4);
+            avance_vit(VITESSE_ROBOT);
         }
         else
         {
@@ -110,13 +114,13 @@ namespace saeS1{
         }
     }
 
-    bool avance_valon(unsigned int vit)
+    bool avance_valon(double cap)
     {
         /*
-        Avance tout droit jusqu'a un valon a une vitesse donné
+        Avance tout droit jusqu'a un valon
         Renvoie vrais lorsque on est en mouvement
         utilise
-            - avance_vit
+            - avance_cap
             - detec_2_Capt
             - stop
         */
@@ -127,12 +131,14 @@ namespace saeS1{
         }
         else
         {
-            avance_vit(vit);
+            avance_Cap(cap)
             return true;
         }
     
     }
-        
+
+    //fonction de déplacement
+
     bool avance_temps_cap(double temps, double cap, temps_t temps0)
     {
         /*

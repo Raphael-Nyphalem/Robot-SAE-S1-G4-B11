@@ -28,11 +28,13 @@ void test_Avance_Valon()
 {
     //Permet au robot d'avancer en ligne droite (simple) durant 1s
     cout << "Scénario avance_valon " <<endl;
-    unsigned int vit = VITESSE_2;
 
-	avance_valon(vit);
-	sleep_for(milliseconds(1000));
-    stop();
+    double cap;
+    cap = get_compas()
+    while (avance_valon(cap))
+    {
+        /* on avance vers le cap jusqu'a un valon */
+    }
 
 }
 
@@ -43,7 +45,7 @@ void test_Avance_cap_temps()
     cout << "Scénario test_Avance_cap_temps " <<endl;
     temps_t  temps0;
     get_temps(temps0);
-    avance_temps_cap(5,90,temps0);
+    while(avance_temps_cap(5,90,temps0)){};
 
 }
 
