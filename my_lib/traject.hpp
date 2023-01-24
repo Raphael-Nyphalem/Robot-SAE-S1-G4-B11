@@ -2,8 +2,22 @@
 #ifndef SAES1_TRAJECT_HPP
 #define SAES1_TRAJECT_HPP
 
-namespace saeS1{
+#include "robot.hpp"
 
+namespace saeS1{
+    void base_chargement(double trajet[MAX_FONCTIONS][MAX_PARAMETRE]);
+
+    void chargement_A(double trajet[MAX_FONCTIONS][MAX_PARAMETRE]);
+
+    void chargement_B(double trajet[MAX_FONCTIONS][MAX_PARAMETRE]);
+
+    void A_chargement(double trajet[MAX_FONCTIONS][MAX_PARAMETRE]);
+
+    void B_chargement(double trajet[MAX_FONCTIONS][MAX_PARAMETRE]);
+
+    void A_base(double trajet[MAX_FONCTIONS][MAX_PARAMETRE]);
+
+    void B_base(double trajet[MAX_FONCTIONS][MAX_PARAMETRE]);
 
 }//namespace saeS1
 

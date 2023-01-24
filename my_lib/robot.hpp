@@ -13,6 +13,7 @@
 #include "capteur.hpp"
 #include "foncTemps.hpp"
 #include "avanceCompose.hpp"
+#include "traject.hpp"
 
 namespace saeS1{
     const int MAX_FONCTIONS = 15;

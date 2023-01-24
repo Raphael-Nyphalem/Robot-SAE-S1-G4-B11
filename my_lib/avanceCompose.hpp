@@ -1,6 +1,6 @@
 //avanceCompose.hpp
-#ifndef SAES1_AVANCECOMPOSE_HPP
-#define SAES1_AVANCECOMPOSE_HPP
+#ifndef SAES1_AVANCE_HPP
+#define SAES1_AVANCE_HPP
 
 #include <iostream>
 #include <iomanip>

@@ -2,8 +2,8 @@
 #include<iostream>
 
 
-const int MAX_FONCTIONS = 20;
-const int MAX_PARAMETRE = 6;
+const int MAX_FONCTIONS = 15;
+const int MAX_PARAMETRE = 5;
 
 using namespace std;
 void param_avance_valon(double tabParametre[MAX_PARAMETRE])

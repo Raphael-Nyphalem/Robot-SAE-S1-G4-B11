@@ -79,8 +79,6 @@ void test_robot()
         {0,0,0,0,0},
         {0,0,0,0,0}};
 
-    
-
     robot(trajet1);
 
     
