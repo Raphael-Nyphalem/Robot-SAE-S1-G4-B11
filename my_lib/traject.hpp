@@ -5,6 +5,8 @@
 #include "robot.hpp"
 
 namespace saeS1{
+    void copieTab(double trajet[MAX_FONCTIONS][MAX_PARAMETRE],double copy[MAX_FONCTIONS][MAX_PARAMETRE]);
+
     void base_chargement(double trajet[MAX_FONCTIONS][MAX_PARAMETRE]);
 
     void chargement_A(double trajet[MAX_FONCTIONS][MAX_PARAMETRE]);
