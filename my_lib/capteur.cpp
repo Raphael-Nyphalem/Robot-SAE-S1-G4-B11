@@ -19,6 +19,11 @@ namespace saeS1{
     // Début sous-programmes
     void init_gpio_capteur()
     {
+        /*
+        Permet d'optenir d'initialiser les pins des capteurs gpios
+        utilise
+        gpio rapsberry
+        */
         gpioSetConfig(PIN_CAPT_GAUCHE, in);
         gpioSetConfig(PIN_CAPT_DROIT, in);
     }

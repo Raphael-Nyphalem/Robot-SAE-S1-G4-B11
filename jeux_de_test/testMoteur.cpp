@@ -19,10 +19,6 @@ using namespace std::chrono; // system_clock, seconds, milliseconds
 using namespace saeS1;
 
 //TEST
-void init()
-{
-    init_gpio_moteur();
-}
 
 void test_avance_Vitesse_Droit()
 {
@@ -64,7 +60,7 @@ int main()
 		cout << "Sense Hat initialization Ok." << endl;
 		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		// Début instructions
-		init();
+		init_gpio_moteur();
 
         //programme
         int debuter;

@@ -21,36 +21,37 @@
 
 #include <sensehat.h>
 
+
+#include "my_lib/avanceCompose.hpp"
+#include "my_lib/robot.hpp"
+
+#include "my_lib/boussole.hpp"
+#include "my_lib/capteur.hpp"
+#include "my_lib/moteur.hpp"
+#include "my_lib/foncTemps.hpp"
+
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
-
 using namespace saeS1;
 
 //SCENARIOS
 void ligneDroite()
 {
-    //Permet au robot d'avancer en ligne droite
+    //Permet au robot d'avancer en ligne droite durant 7s ou jusqu'a qu'il ateingne un valon
     cout << "Scénario ligne droite" <<endl;
     unsigned int vit = VITESSE_2;
-    
+    temps_t temps0;
+    get_temps(temps0);
+
+    bool detectValon;
 	do
 	{
-	
-        /*
-		if (detect_angle(cap))
-		{
-			avance_valon(vit);
-		}
-		else
-		{
-			correction_angle(cap, vit);
-		}
-        */
-
-		avance_valon(vit);
-		sleep_for(milliseconds(100));
-	}while(true);
+		detectValon = avance_valon(vit);
+	}while(
+        (!(detect_temps(7,temps0))
+        && detectValon())
+    );
 }
 
 //Scénar 1
@@ -59,13 +60,10 @@ void suiviLigneCourbe()
     //Permet au robot de suivre une ligne avec des virages
 
     cout << "Scénario ligne courbe" <<endl;
+    bool detectValon= false;
    do
     {
-         if(detec_2_Capt())
-        {
-            stop();
-        }
-        else if (detec_Capt_Droit())
+        if (detec_Capt_Droit())
         {
             avance_Vitesse_Gauche(VITESSE_1);
         }
@@ -75,11 +73,10 @@ void suiviLigneCourbe()
         }
         else
         {
-            avance_valon(VITESSE_4);
+            detectValon = not(avance_valon(VITESSE_4));
         }
-    } while (true);
-
-   
+    } while (detectValon);
+    stop();
 }
 
 //Scénar 3
@@ -92,21 +89,15 @@ void scenEntrepot()
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 int main() {
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Début variables
-
-	// Fin variables
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 	if(senseInit()) {
 		cout << "Sense Hat initialization Ok." << endl;
-		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		// Début instructions
+
+        //init
 		init();
 
         //programme
         int debuter;
-        bool exitboucle = true;
+        bool exit = true;
         do
         {
             cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
@@ -117,10 +108,9 @@ int main() {
             cin>> debuter;        
             
             //selectionneur de scénario (mode)
-            
             switch (debuter) {
                 case 0:
-                    exitboucle = false;
+                    exit = false;
                 case 1 :
                     ligneDroite();
                     break;
@@ -133,7 +123,9 @@ int main() {
                 default:
                     break;
             }
-        }while(exitboucle);
+        }while(exit);
+
+
 		// Fin instructions
 		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		cout << "Press joystick button to quit." << endl;
@@ -142,6 +134,5 @@ int main() {
 		senseShutdown();
 		cout << "Sense Hat shut down." << endl;
 	}
-
 	return EXIT_SUCCESS;
 }

@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <chrono>
 #include <thread>
+#include <string>
 
 #include <sensehat.h>
 
