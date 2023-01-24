@@ -62,11 +62,11 @@ void create_etape(double tabParametre[MAX_PARAMETRE])
     int fonction_int;
 
     cout<<"donnez fonction a utiliser\n"
-        <<"0 pour stop\n"
-        <<"1 pour avance valon\n"
-        <<"2 pour avance temps cap\n"
-        <<"3 pour tourne cap\n";
-        <<"4 pour demit tour\n";
+        <<"\t0 pour stop\n"
+        <<"\t1 pour avance valon\n"
+        <<"\t2 pour avance temps cap\n"
+        <<"\t3 pour tourne cap\n"
+        <<"\t4 pour demit tour\n";
 
     cin>> fonction;
     fonction_int = fonction;
