@@ -100,11 +100,21 @@ void create_etape(double tabParametre[MAX_PARAMETRE])
 
 void cree_tab(double tabParametre[MAX_FONCTIONS][MAX_PARAMETRE])
 {
-    for (int i = 0; i < MAX_FONCTIONS; i++)
+    int i=0;
+    bool continuer = true;
+    char a;
+    while (i < MAX_FONCTIONS && continuer)
     {
         cout<<" codage étape "<<i<<endl;
         create_etape(tabParametre[i]);
-    }   
+        i++;
+        cout<<"\ncontinuer ?\n";
+        cin>>a;
+        if (a =='n')
+        {
+            continuer = false;
+        }
+    } 
 }
 
 void affiche_tab(double tabParametre[MAX_FONCTIONS][MAX_PARAMETRE])
