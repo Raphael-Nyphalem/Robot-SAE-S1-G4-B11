@@ -8,7 +8,7 @@
 #include <thread>
 #include <string>
 
-//namespace saeS1{
+namespace saeS1{
 
     typedef struct temps_t{
         std::chrono::steady_clock::time_point t;
@@ -26,6 +26,6 @@
         double tempsSeuil,
         temps_t &temps0);
 
-//} //namespace saeS1
+} //namespace saeS1
 
 #endif //FONCTEMPS_HPP

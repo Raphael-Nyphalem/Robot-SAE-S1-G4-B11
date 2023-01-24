@@ -38,6 +38,13 @@ void param_tourne_cap(double tabParametre[MAX_PARAMETRE])
 
 }
 
+void param_demit_tours(double tabParametre[MAX_PARAMETRE])
+{
+    double angle;
+    tabParametre[0]=4;
+
+}
+
 void init_tab_0(double tabRobot[MAX_FONCTIONS][MAX_PARAMETRE])
     {
         for (int f = 0; f < MAX_FONCTIONS; f++)
@@ -59,6 +66,7 @@ void create_etape(double tabParametre[MAX_PARAMETRE])
         <<"1 pour avance valon\n"
         <<"2 pour avance temps cap\n"
         <<"3 pour tourne cap\n";
+        <<"4 pour demit tour\n";
 
     cin>> fonction;
     fonction_int = fonction;
@@ -80,6 +88,9 @@ void create_etape(double tabParametre[MAX_PARAMETRE])
 
     case 3:
         param_tourne_cap(tabParametre);
+        break;
+    case 4:
+        param_demit_tours(tabParametre);
         break;
     
     default:

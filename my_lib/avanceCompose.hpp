@@ -1,6 +1,6 @@
 //avanceCompose.hpp
-#ifndef SAES1_TEMPS_HPP
-#define SAES1_TEMPS_HPP
+#ifndef SAES1_AVANCECOMPOSE_HPP
+#define SAES1_AVANCECOMPOSE_HPP
 
 #include <iostream>
 #include <iomanip>
@@ -47,4 +47,4 @@ namespace saeS1{
 
 } //namespace saeS1
 
-#endif //TEMPS.HPP
+#endif //AVANCECOMPOSE.HPP

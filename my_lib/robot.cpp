@@ -71,6 +71,10 @@ namespace saeS1{
             tabParametre[1] = tourne_cap(direction);
             
         } while (detect_etape_en_cours(tabParametre[1]));
+    }
+
+    void execute_demit_tour_4(double tabParametre[MAX_PARAMETRE])
+    {
         
 
     }
@@ -84,21 +88,23 @@ namespace saeS1{
             switch (fonction)
             {
             case 0:
-                execute_stop_0(tabParametre)
+                execute_stop_0(tabParametre);
                 break;
 
             case 1:
-                execute_avanceValon_1(tabParametre)
+                execute_avanceValon_1(tabParametre);
                 break;
 
             case 2:
-                execute_avanceTempsCap_2(tabParametre)
+                execute_avanceTempsCap_2(tabParametre);
                 break;
 
             case 3:
-                execute_tourne_cap_3(tabParametre)
+                execute_tourne_cap_3(tabParametre);
                 break;
-
+            case 4:
+                execute_demit_tour_4(tabParametre);
+                break;
             default:
                 break;
             }

@@ -15,8 +15,8 @@
 #include "avanceCompose.hpp"
 
 namespace saeS1{
-    const int MAX_FONCTIONS = 20;
-    const int MAX_PARAMETRE = 6;
+    const int MAX_FONCTIONS = 15;
+    const int MAX_PARAMETRE = 5;
 
     
     void robot

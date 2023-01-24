@@ -23,11 +23,12 @@
 
 
 #include "my_lib/avanceCompose.hpp"
+#include "my_lib/robot.hpp"
 
 #include "my_lib/boussole.hpp"
 #include "my_lib/capteur.hpp"
 #include "my_lib/moteur.hpp"
-#include "my_lib/temps.hpp"
+#include "my_lib/foncTemps.hpp"
 
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
@@ -118,9 +119,6 @@ int main() {
                     break;
                 case 3:
                     scenEntrepot();
-                    break;
-				case 4:
-                    test();
                     break;
                 default:
                     break;

@@ -26,10 +26,10 @@ execute
 //TEST execute
 void test_execute()
 {
-    double stop[MAX_PARAMETRE]={0,1,0,0,0,0};
-    double avanceValon[MAX_PARAMETRE]= {1,1,100,0,0,0};
-    double avanceTempsCap[MAX_PARAMETRE]= {2,1,10,-1,0,0};
-    double tourneCap[MAX_PARAMETRE]={3,1,90,0,0,0};
+    double stop[MAX_PARAMETRE]={0,1,0,0,0};
+    double avanceValon[MAX_PARAMETRE]= {1,1,100,0,0};
+    double avanceTempsCap[MAX_PARAMETRE]= {2,1,10,-1,0};
+    double tourneCap[MAX_PARAMETRE]={3,1,90,0,0};
 
     cout<<"debut test avance Valon\n";
     execute_etape(avanceValon);
@@ -61,29 +61,23 @@ void test_robot()
     //trajet base A
     double trajet1[MAX_FONCTIONS][MAX_PARAMETRE]=
         {
-        {1,1,100,0,0,0},
-        {2,1,0.5,-1,0,0},
-        {3,1,90,0,0,0},
-        {1,1,100,0,0,0},
-        {3,1,90,0,0,0},
+        {1,1,100,0,0},
+        {2,1,0.5,-1,0},
+        {3,1,90,0,0},
+        {1,1,100,0,0},
+        {3,1,90,0,0}
 
-        {1,1,100,0,0,0},
-        {2,1,1,-1,0,0},
-        {1,1,100,0,0,0},
-        {3,1,-90,0,0,0},
-        {1,1,100,0,0,0},
+        {1,1,100,0,0},
+        {2,1,1,-1,0},
+        {1,1,100,0,0},
+        {3,1,-90,0,0},
+        {1,1,100,0,0},
 
-        {0,1,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0},
-        {0,0,0,0,0,0}};
+        {0,1,0,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0}};
 
     
 

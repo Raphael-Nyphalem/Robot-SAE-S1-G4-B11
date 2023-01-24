@@ -10,7 +10,7 @@
 using namespace std;
 using namespace std::chrono;
 
-//namespace saeS1{
+namespace saeS1{
 
     void get_temps(temps_t &temps)
     {
@@ -59,4 +59,4 @@ using namespace std::chrono;
 
 
 
-//} //namespace saeS1
+} //namespace saeS1

@@ -2,7 +2,7 @@
 #include <chrono>
 #include <thread>
 
-#include "../my_lib/temps.hpp"
+#include "../my_lib/foncTemps.hpp"
 
 using namespace std;
 using namespace std::chrono;
