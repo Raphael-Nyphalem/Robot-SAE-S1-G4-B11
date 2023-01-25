@@ -30,27 +30,47 @@
 #include "my_lib/moteur.hpp"
 #include "my_lib/foncTemps.hpp"
 
+#include "my_lib/traject.hpp"
+
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
 using namespace saeS1;
+
+char prendre_chargement(int i)
+{
+    if(i==0)
+    {
+        return 'A';
+    }
+    else if (i==1)
+    {
+        return 'B';
+    }
+    else
+    {
+        return 'N';
+    }
+    
+}
+
 
 //SCENARIOS
 void ligneDroite()
 {
     //Permet au robot d'avancer en ligne droite durant 7s ou jusqu'a qu'il ateingne un valon
     cout << "Scénario ligne droite" <<endl;
-    unsigned int vit = VITESSE_2;
+    double cap = get_compas();
     temps_t temps0;
     get_temps(temps0);
 
     bool detectValon;
 	do
 	{
-		detectValon = avance_valon(vit);
+		detectValon = avance_valon(cap);
 	}while(
         (!(detect_temps(7,temps0))
-        && detectValon())
+        && detectValon)
     );
 }
 
@@ -61,6 +81,7 @@ void suiviLigneCourbe()
 
     cout << "Scénario ligne courbe" <<endl;
     bool detectValon= false;
+    double cap = get_compas();
    do
     {
         if (detec_Capt_Droit())
@@ -73,7 +94,7 @@ void suiviLigneCourbe()
         }
         else
         {
-            detectValon = not(avance_valon(VITESSE_4));
+            detectValon = not(avance_valon(cap));
         }
     } while (detectValon);
     stop();
@@ -83,6 +104,62 @@ void suiviLigneCourbe()
 void scenEntrepot()
 {
     cout << "Scénario Entrepôt" <<endl;
+    double trajet[MAX_FONCTIONS][MAX_PARAMETRE];
+    char chargement = 'N';//chargement vide
+
+    cout<<"On est a la base\n";
+    base_chargement(trajet);
+    robot(trajet);
+
+
+    for (int i = 0; i < 2; i++)
+    {
+        cout<<"On est au chargement\n";
+        sleep_for(milliseconds(5000));
+
+        chargement = prendre_chargement(i);
+
+        if (chargement == 'A')
+        {
+            cout<<"On prend la marchandise A\n";
+            chargement_A(trajet);
+            robot(trajet);
+
+            cout<<"On est au point A\n";
+            cout<<"On vide le chargement A\n";
+            chargement ='N';
+            sleep_for(milliseconds(5000));
+            
+            A_chargement(trajet);
+            robot(trajet);
+
+        }
+        else if (chargement == 'B')
+        {
+            cout<<"On prend la marchandise B\n";
+            chargement_B(trajet);
+            robot(trajet);
+
+            cout<<"On est au point B\n";
+            cout<<"On vide le chargement B\n";
+            chargement ='N';
+            sleep_for(milliseconds(5000));
+            
+            B_chargement(trajet);
+            robot(trajet);
+        }
+        else
+        {
+            cout<<"Il n'y a pas de marchandise\n";
+        }
+        
+    }
+
+    chargement_base(trajet);
+    robot(trajet);
+
+    cout<<"On est a la base\n";
+    cout<<"Fin du trajet\n";    
 }
 
 // Fin sous-programmes

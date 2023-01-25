@@ -22,6 +22,14 @@ namespace saeS1{
        //copieTab(trajet,BC);
 
     }
+    void chargement_base(double trajet[MAX_FONCTIONS][MAX_PARAMETRE])
+    {
+        /*
+        Décrit le chemin de la la zone de chargement de la marchandise vers base du robot pour recharger sa batterie
+        */
+       //double CB[MAX_FONCTIONS][MAX_PARAMETRE]= 
+       //copieTab(trajet,CB);
+    }
 
     void chargement_A(double trajet[MAX_FONCTIONS][MAX_PARAMETRE])
     {
@@ -59,22 +67,24 @@ namespace saeS1{
        //copieTab(trajet,BC);
     }
 
+    /*
     void A_base(double trajet[MAX_FONCTIONS][MAX_PARAMETRE])
     {
-        /*
-        Décrit le chemin du point A j'usqu'a la base 
-        */
+        
+        //Décrit le chemin du point A j'usqu'a la base 
+        
        //double AB[MAX_FONCTIONS][MAX_PARAMETRE]= 
        //copieTab(trajet,AB);
     }
 
     void B_base(double trajet[MAX_FONCTIONS][MAX_PARAMETRE])
     {
-        /*
-        Décrit le chemin du point B j'usqu'a la base 
-        */
+        
+        //Décrit le chemin du point B j'usqu'a la base 
+        
        //double BB[MAX_FONCTIONS][MAX_PARAMETRE]= 
        //copieTab(trajet,BB);
     }
+    */
 
 }//namespace
