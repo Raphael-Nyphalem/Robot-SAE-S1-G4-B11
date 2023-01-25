@@ -53,6 +53,8 @@ namespace saeS1{
     void 
     stop();
 
+    void afficher_Puissance_Moteur(unsigned int vit, int gauche_droite);
+
 } //namespace saeS1
 
 #endif // MOTEUR_HPP

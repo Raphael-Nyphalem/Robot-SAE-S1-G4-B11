@@ -131,7 +131,7 @@ namespace saeS1{
         }
         else
         {
-            avance_Cap(cap)
+            avance_Cap(cap);
             return true;
         }
     

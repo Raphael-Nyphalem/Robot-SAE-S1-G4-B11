@@ -41,13 +41,13 @@ int main()
 		cout << "Sense Hat initialization Ok." << endl;
 		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		// Début instructions
-		initCompas();
+		init_Compas();
 		cap = 1; //get_compas();
-		for (cpt = 0; cpt < MAX_MESURES; cpt++)
+		for (cpt = 0; cpt < 100; cpt++)
 		{
 			compas = get_compas();
 			cout << "Orientation de : " << compas << " degrés." << endl;
-			if(detect_angle(cap,compas))
+			if(detect_angle(cap))
 			{
 				cout << "Nous sommes dans le cap" << endl;
 			}

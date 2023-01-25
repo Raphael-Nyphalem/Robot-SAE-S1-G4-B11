@@ -21,6 +21,8 @@
 
 #include <sensehat.h>
 
+#include "../my_lib/avanceCompose.hpp"
+
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
 using namespace std::chrono; // system_clock, seconds, milliseconds
@@ -31,7 +33,7 @@ using namespace saeS1;
 void test_cap()
 {
     double cap;
-    cap = 1; //get_compas();
+    cap =get_compas();
     while(avance_valon(cap)){}
     
 }
@@ -62,13 +64,11 @@ int main() {
         {
             cout <<"Pour démarrer le robot merci de rentrer le scénario choisi : " << endl << "\t" 
                 << "0 pour stop le programme"<< endl << "\t" 
-                << "1 pour le suivi de ligne droite"<< endl << "\t" 
-                << "2 pour le suivi de ligne avec courbes"<< endl << "\t" 
-                << "3 pour le robot d'entrepôt"<< endl;
-                << "4 pour le test d'une fonction"<< endl;
+                << "1 avance tout droit jusqu'à valon"<< endl << "\t";
             cin>> debuter;        
             
             //selectionneur de scénario (mode)
+            
             
             switch (debuter) {
                 case 0:
