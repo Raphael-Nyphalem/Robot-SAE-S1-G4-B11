@@ -23,7 +23,7 @@
 
 
 #include "my_lib/avanceCompose.hpp"
-#include "my_lib/robot.hpp"
+#include "my_lib/robotmove.hpp"
 
 #include "my_lib/boussole.hpp"
 #include "my_lib/capteur.hpp"
@@ -188,6 +188,7 @@ int main() {
             switch (debuter) {
                 case 0:
                     exit = false;
+                    break;
                 case 1 :
                     ligneDroite();
                     break;
