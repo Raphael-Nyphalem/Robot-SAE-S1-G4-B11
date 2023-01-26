@@ -7,7 +7,9 @@ ce placer dans le fichier
 
 
 commande pour compiler le programme principal
+~
 g++ -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wsign-conversion -Wlogical-op -Wuseless-cast -Werror -pedantic -std=gnu++2a -o main main.cpp -lsensehat-c++ -lpng -li2c -lm -lRTIMULib -lgpiod my_lib/*
+~
 
 pour executer:
 ./main
@@ -15,7 +17,9 @@ pour executer:
 
 
 commande pour pour le programme de creation de trajet
+~
 g++ -o creeTrajet creeTrajet.cpp
+~
 
 pour executer:
 ./creeTrajet
@@ -29,7 +33,9 @@ g++ -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wsign-conversion -Wlo
 ~~~
 
 exemple:
+~
 g++ -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wsign-conversion -Wlogical-op -Wuseless-cast -Werror -pedantic -std=gnu++2a -o testAvance_compose Jeux_de_test/testAvance_compose.cpp -lsensehat-c++ -lpng -li2c -lm -lRTIMULib -lgpiod my_lib/*
+~
 
 pour executer ./[filename]
 
