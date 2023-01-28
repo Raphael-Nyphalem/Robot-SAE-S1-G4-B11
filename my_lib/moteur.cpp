@@ -16,11 +16,11 @@ namespace saeS1{
     void init_gpio_moteur()
     {
         /*
-        Permet d'optenir d'initialiser 
-        les channel des moteurs
-        leur applique une période
-        stop les moteur a l'init
-        utilise
+        Permet d'initialiser 
+        les channel des moteurs.
+        Leur applique une période.
+        Stop les moteur a l'init.
+        Utilise :
         gpio rapsberry
         */
         pwmInit(CHAN_MOT_DROIT);
@@ -37,8 +37,9 @@ namespace saeS1{
     void avance_Vitesse_Droit(unsigned int vit)
     {
         /*
-        gere les impulsions de commande du moteur Gauche 
-        en fonction d'une puissance en % (0 a 100)
+        Gère les impulsions de commande du moteur Gauche 
+        en fonction d'une puissance en % (0 a 100).
+        Utilise :
             gpio raspberry
         */
         unsigned int puissance;
@@ -58,9 +59,9 @@ namespace saeS1{
     void avance_Vitesse_Gauche(unsigned int vit)
     {
         /*
-        gere les impulsions de commande du moteur Droit 
-        en fonction d'une puissance en % (0 a 100)
-        utilise
+        Gère les impulsions de commande du moteur Droit 
+        en fonction d'une puissance en % (0 a 100).
+        Utilise :
             gpio raspberry
         */
         unsigned int puissance;
@@ -80,7 +81,7 @@ namespace saeS1{
     void avance_vit(unsigned int vit)
     {
         /*
-        utilise
+        Utilise :
             - avance_Vitesse_Droit
             - avance_Vitesse_Gauche
         */
@@ -92,8 +93,8 @@ namespace saeS1{
     void stop_Mot_Gauche()
     {
         /*
-        arret du moteur Gauche
-        utilise 
+        Arrêt du moteur Gauche.
+        Utilise :
             gpio raspberry
         */
         pwmDutyCycle(CHAN_MOT_GAUCHE,0);
@@ -102,8 +103,8 @@ namespace saeS1{
     void stop_Mot_Droit()
     {
         /*
-        arret du moteur Gauche
-        utilise 
+        Arrêt du moteur Droit.
+        Utilise :
             gpio raspberry
         */
         pwmDutyCycle(CHAN_MOT_DROIT,0);
@@ -112,8 +113,8 @@ namespace saeS1{
     void stop()
     {
         /*
-        Permet d'arreter le robot
-        utilise 
+        Permet d'arrêter le robot.
+        Utilise :
             - stop_Mot_Droit 
             - stop_Mot_Gauche
         */
