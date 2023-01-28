@@ -58,7 +58,7 @@ int main()
 			else 
 			{
 				cout << "Nous ne sommes pas dans le cap" << endl;
-				cout<<" le compas n'est pas bien entre "<< min <<" et "<< max <<endl;
+				cout<<" le compas n'est pas entre "<< min <<" et "<< max <<endl;
 			}
 			cout<<"inverse ?: "<<inverse<<endl;
 
