@@ -38,7 +38,8 @@ namespace saeS1{
     {
         /*
         Gère les impulsions de commande du moteur Gauche 
-        en fonction d'une puissance en % (0 a 100).
+        en fonction d'une puissance en % (0 a 100) afin de faire tourner
+        robot vers la droite.
         Utilise :
             gpio raspberry
         */
@@ -60,7 +61,8 @@ namespace saeS1{
     {
         /*
         Gère les impulsions de commande du moteur Droit 
-        en fonction d'une puissance en % (0 a 100).
+        en fonction d'une puissance en % (0 a 100) afin de faire tourner
+        robot vers la gauche.
         Utilise :
             gpio raspberry
         */
