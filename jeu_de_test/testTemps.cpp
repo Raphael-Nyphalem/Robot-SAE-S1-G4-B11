@@ -15,8 +15,8 @@ int main()
    get_temps(temps0);
    do
    {
-    sleep_for(milliseconds(100));
-    cout<<"\ndans la boucle: "<<temps_Passe(temps0)<<endl;
+      cout<<"\ndans la boucle: "<<temps_Passe(temps0)<<endl;
+      sleep_for(milliseconds(100));
    } while (!(detect_temps(1.05,temps0)));
    cout<<"\nor de la boucle "<<temps_Passe(temps0)<<endl;
 
