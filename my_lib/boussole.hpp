@@ -14,7 +14,7 @@
 namespace saeS1{
 
     const int INT_MESURES = 100;
-    const int DEGRE_ANGLE_LIB = 10;
+    const int DEGRE_ANGLE_LIB = 2.5;
 
     void init_Compas();
 
