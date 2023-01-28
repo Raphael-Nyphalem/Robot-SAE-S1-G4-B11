@@ -18,8 +18,8 @@ namespace saeS1{
     void init_Compas()
     {
         /*
-        Permet d'optenir d'initialiser la boussole
-        utilise
+        Permet d'initialiser la boussole.
+        Utilise :
         <sensehat.h>
         get_compas()
         */
@@ -35,8 +35,8 @@ namespace saeS1{
     double get_compas()
     {
         /*
-        Permet d'optenir l'angle actuel de la boussole
-        utilise
+        Permet d'obtenir l'angle actuel de la boussole.
+        Utilise :
         <sensehat.h>
         */
         return senseGetCompass();
@@ -45,9 +45,9 @@ namespace saeS1{
     bool calcul_Min_Max (double &min,double &max,double cap)
     {
         /*
-        Permet de calculer une plage autour du cap a suivre MIN, MAX
-        Prend en compte lorsque le cap est proche de 0 grave a la varible inverse
-        Renvoie vrais lorsque on est dans le cas inverse
+        Permet de calculer une plage autour du cap a suivre MIN, MAX.
+        Prend en compte lorsque le cap est proche de 0 grâce à la varible inverse.
+        Renvoie vrai lorsqu'on est dans le cas inverse.
         */
         double save_val;
         bool inverse = false;
@@ -74,7 +74,7 @@ namespace saeS1{
     bool calcul_Inverse_Cap(double cap, double &nonCap)
     {
         /*
-            Permet de calculer l'angle opposé au cap
+            Permet de calculer l'angle opposé au cap.
             Renvoie vrai si le cap est supérieur à 180 et calcule l'opposé du cap.
         */
         if(cap < 180)
@@ -115,8 +115,8 @@ namespace saeS1{
     {
         /*
         Permet de détecter si le sensor (ou le robot dans notre cas)
-        est dans le cap 
-        utilise
+        est dans le cap .
+        Utilise :
         get_compas()
         calcul_Min_Max()
 
