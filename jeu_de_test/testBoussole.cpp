@@ -53,12 +53,12 @@ int main()
 			if(detect_angle(cap))
 			{
 				cout << "Nous sommes dans le cap" << endl;
-				cout<<" le cap est bien entre "<< min <<" et "<< max <<endl;
+				cout<<" le compas est bien entre "<< min <<" et "<< max <<endl;
 			}
 			else 
 			{
 				cout << "Nous ne sommes pas dans le cap" << endl;
-				cout<<" le cap n'est pas bien entre "<< min <<" et "<< max <<endl;
+				cout<<" le compas n'est pas bien entre "<< min <<" et "<< max <<endl;
 			}
 			cout<<"inverse ?: "<<inverse<<endl;
 
