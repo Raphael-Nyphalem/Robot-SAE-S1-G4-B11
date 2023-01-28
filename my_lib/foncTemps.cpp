@@ -41,7 +41,7 @@ namespace saeS1{
     {
         /*
         Détecte lorsque la différence de temps (entre un temps0 et le temps actuel de la machine) 
-        est supérieur à un seuil.
+        est supérieure à un seuil.
         Renvoie vrai lorsque ce temps est supérieur au seuil.
         Utilise :
             temps_Passe
