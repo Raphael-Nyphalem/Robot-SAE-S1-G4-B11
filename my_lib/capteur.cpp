@@ -20,8 +20,8 @@ namespace saeS1{
     void init_gpio_capteur()
     {
         /*
-        Permet d'optenir d'initialiser les pins des capteurs gpios
-        utilise
+        Permet d'initialiser les pins des capteurs gpios.
+        Utilise :
         gpio rapsberry
         */
         gpioSetConfig(PIN_CAPT_GAUCHE, in);
@@ -33,8 +33,8 @@ namespace saeS1{
     bool detec_Capt_Droit()
     {
         /*
-        Renvois Vrais si le capteur Droit detecte une bande noir
-        utilise
+        Renvoie vrai si le capteur droit détecte une bande noire.
+        Utilise :
             gpio raspberry
         */
         bool detect;
@@ -49,8 +49,8 @@ namespace saeS1{
     bool detec_Capt_Gauche()
     {
         /*
-        Renvois Vrais si le capteur Gauche detecte une bande noir
-        utilise
+        Renvoie vrai si le capteur gauche détecte une bande noire.
+        Utilise :
             gpio raspberry
         */
         bool detect;
@@ -65,8 +65,8 @@ namespace saeS1{
     bool detec_2_Capt()
     {
         /*
-        Renvois Vrais si les 2 capteurs detecte une bande noir
-        utilise
+        Renvois vrai si les 2 capteurs détectent une bande noire.
+        Utilise :
             - detec_Capt_Gauche
             - detec_Capt_Droit
         */
