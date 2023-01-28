@@ -15,8 +15,8 @@ namespace saeS1{
     void get_temps(temps_t &temps)
     {
         /*
-        Recupère l'heure de la machine
-        utilise
+        Recupère l'heure de la machine.
+        Utilise :
             <chrono>
         */
         temps.t = steady_clock::now();
@@ -25,8 +25,8 @@ namespace saeS1{
     double temps_Passe(temps_t &temps0)
     {
         /*
-        calcul la difference de temps entre un temps0 et le temps actuel de la machine
-        utilise
+       Calcule la différence de temps entre un temps0 et le temps actuel de la machine.
+       Utilise :
             <chrono>
             get_temps
         */
@@ -40,10 +40,10 @@ namespace saeS1{
     bool detect_temps(double tempsSeuil,temps_t &temps0)
     {
         /*
-        Detecte lorsque la difference de temps (entre un temps0 et le temps actuel de la machine) 
-        est supperieur a un seuil
-        Renvoie vrais lorsque ce temps est supperieur au seuil
-        utilise
+        Détecte lorsque la différence de temps (entre un temps0 et le temps actuel de la machine) 
+        est supérieur à un seuil.
+        Renvoie vrai lorsque ce temps est supérieur au seuil.
+        Utilise :
             temps_Passe
         */
         if (temps_Passe(temps0) >= tempsSeuil)
