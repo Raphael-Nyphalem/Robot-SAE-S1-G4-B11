@@ -65,7 +65,7 @@ namespace saeS1{
     bool detec_2_Capt()
     {
         /*
-        Renvois vrai si les 2 capteurs détectent une bande noire.
+        Renvoie vrai si les 2 capteurs détectent une bande noire.
         Utilise :
             - detec_Capt_Gauche
             - detec_Capt_Droit
