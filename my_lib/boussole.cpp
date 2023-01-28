@@ -21,7 +21,6 @@ namespace saeS1{
         Permet d'initialiser la boussole.
         Utilise :
         <sensehat.h>
-        get_compas()
         */
         int cpt;
         senseSetIMUConfig(true, true, true);
