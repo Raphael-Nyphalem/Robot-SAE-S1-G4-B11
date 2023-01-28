@@ -32,8 +32,8 @@ namespace saeS1{
     void correction_angle(double angle_cap)
     {
         /*
-        corrige la trajectoire du robot en direction du cap
-        utilise
+        corrige la trajectoire du robot en direction du cap.
+        Utilise :
             - avance_Vitesse_Droit
             - avance_Vitesse_Gauche
             - get_compas
@@ -63,7 +63,7 @@ namespace saeS1{
         else
         {
             //cas non inversé
-            //On prends en compte que la boussole fonctionne en sens horraire
+            //On prend en compte que la boussole fonctionne en sens horraire.
             if(calcul_Inverse_Cap(angle_cap, nonCap))
             {
                 if((angle > max) || angle < nonCap)
@@ -98,8 +98,8 @@ namespace saeS1{
     void avance_Cap(double cap)
     {
         /*
-        Avance en direction d'un cap donnez
-        utilise
+        Avance en direction d'un cap donné.
+        Utilise :
             - detect_angle
             - avance_vit
             - correction_angle
@@ -118,8 +118,8 @@ namespace saeS1{
     {
         /*
         Avance tout droit jusqu'a un valon
-        Renvoie vrais lorsque on est en mouvement
-        utilise
+        Renvoie vrai lorsqu'on est en mouvement.
+        Utilise
             - avance_cap
             - detec_2_Capt
             - stop
@@ -143,10 +143,10 @@ namespace saeS1{
     {
         /*
         Avance tout droit 
-            en direction d'un cap donnez
-            durant un temps donnez
-        Renvoie vrais lorsque on est en mouvement
-        utilise
+            en direction d'un cap donné
+            durant un temps donné.
+        Renvoie vrai lorsque on est en mouvement.
+        Utilise :
             - avance_vit
             - detec_2_Capt
             - stop
