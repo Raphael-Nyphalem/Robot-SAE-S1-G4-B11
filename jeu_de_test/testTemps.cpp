@@ -18,6 +18,6 @@ int main()
       cout<<"\ndans la boucle: "<<temps_Passe(temps0)<<endl;
       sleep_for(milliseconds(100));
    } while (!(detect_temps(1.05,temps0)));
-   cout<<"\nor de la boucle "<<temps_Passe(temps0)<<endl;
+   cout<<"\nhors de la boucle "<<temps_Passe(temps0)<<endl;
 
 }
