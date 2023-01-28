@@ -31,6 +31,8 @@ int main()
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Début variables
 	double compas, cap;
+	double min,max;
+	bool inverse;
 	int cpt;
 	string direction;
 	// Fin variables
@@ -46,15 +48,19 @@ int main()
 		for (cpt = 0; cpt < 100; cpt++)
 		{
 			compas = get_compas();
+			inverse = calcul_Min_Max(min,max,cap);
 			cout << "Orientation de : " << compas << " degrés." << endl;
 			if(detect_angle(cap))
 			{
 				cout << "Nous sommes dans le cap" << endl;
+				cout<<" le cap est bien entre "<< min <<" et "<< max <<endl;
 			}
 			else 
 			{
 				cout << "Nous ne sommes pas dans le cap" << endl;
+				cout<<" le cap n'est pas bien entre "<< min <<" et "<< max <<endl;
 			}
+			cout<<"inverse ?: "<<inverse<<endl;
 
 			sleep_for(milliseconds(200));
 		}
