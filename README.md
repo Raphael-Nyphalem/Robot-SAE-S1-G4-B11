@@ -28,15 +28,15 @@ g++ -o creeTrajet creeTrajet.cpp
 
 
 ##commande pour compiler chaque jeu de teste
-remplacer [filename] et [filename.cpp] par le nom et le fichier dans 'Jeux_de_test/'
+remplacer [filename] et [filename.cpp] par le nom et le fichier dans 'jeu_de_test/'
 
 ~~~
-g++ -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wsign-conversion -Wlogical-op -Wuseless-cast -Werror -pedantic -std=gnu++2a -o [filename] Jeux_de_test/[filename.cpp] -lsensehat-c++ -lpng -li2c -lm -lRTIMULib -lgpiod my_lib/*
+g++ -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wsign-conversion -Wlogical-op -Wuseless-cast -Werror -pedantic -std=gnu++2a -o [filename] jeu_de_test/[filename.cpp] -lsensehat-c++ -lpng -li2c -lm -lRTIMULib -lgpiod my_lib/*
 ~~~
 
 exemple:
 ~~~
-g++ -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wsign-conversion -Wlogical-op -Wuseless-cast -Werror -pedantic -std=gnu++2a -o testAvance_compose Jeux_de_test/testAvance_compose.cpp -lsensehat-c++ -lpng -li2c -lm -lRTIMULib -lgpiod my_lib/*
+g++ -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wsign-conversion -Wlogical-op -Wuseless-cast -Werror -pedantic -std=gnu++2a -o testAvance_compose jeu_de_test/testAvance_compose.cpp -lsensehat-c++ -lpng -li2c -lm -lRTIMULib -lgpiod my_lib/*
 ~~~
 
 ###pour executer:
