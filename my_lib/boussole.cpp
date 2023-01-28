@@ -45,7 +45,7 @@ namespace saeS1{
     bool calcul_Min_Max (double &min,double &max,double cap)
     {
         /*
-        Permet de calculer une plage autour du cap a suivre MIN, MAX.
+        Permet de calculer une plage autour du cap à suivre MIN, MAX.
         Prend en compte lorsque le cap est proche de 0 grâce à la varible inverse.
         Renvoie vrai lorsqu'on est dans le cas inverse.
         */
@@ -115,7 +115,7 @@ namespace saeS1{
     {
         /*
         Permet de détecter si le sensor (ou le robot dans notre cas)
-        est dans le cap .
+        est dans le cap.
         Utilise :
         get_compas()
         calcul_Min_Max()
