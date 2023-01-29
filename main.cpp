@@ -81,7 +81,7 @@ void suiviLigneCourbe()
 
     cout << "Scénario ligne courbe" <<endl;
     bool detectValon= false;
-    double cap = get_compas();
+    double cap;
    do
     {
         if (detec_Capt_Droit())
@@ -94,6 +94,7 @@ void suiviLigneCourbe()
         }
         else
         {
+            cap = get_compas();
             detectValon = not(avance_valon(cap));
         }
     } while (detectValon);
