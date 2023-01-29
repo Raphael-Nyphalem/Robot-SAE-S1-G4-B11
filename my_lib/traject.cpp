@@ -1,9 +1,14 @@
-
+/* File: traject.cpp
+ * Authors: Timothée Burgmeier & Raphaël Louis Le Denmat
+ * Source: https://github.com/Raphael-Nyphalem/Robot-SAE-S1-G4-B11
+ *
+ */
 #include "traject.hpp"
 namespace saeS1{
 
     void copieTab(double trajet[MAX_FONCTIONS_TRAJET][MAX_PARAMETRE_TRAJET], double copy[MAX_FONCTIONS_TRAJET][MAX_PARAMETRE_TRAJET])
     {
+        //Cette fonction permet de copier le tableau “copy” dans le tableau “trajet”.
         for (int f = 0; f < MAX_FONCTIONS_TRAJET; f++)
         {
             for (int p = 0; p < MAX_PARAMETRE_TRAJET; p++)
