@@ -1,4 +1,4 @@
-//temps.hpp
+//foncTemps.hpp
 #ifndef SAES1_FONCTEMPS_HPP
 #define SAES1_FONCTEMPS_HPP
 
