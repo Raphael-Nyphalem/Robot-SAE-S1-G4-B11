@@ -84,21 +84,25 @@ void suiviLigneCourbe()
     double cap;
    do
     {
-        if (detec_Capt_Droit())
+	if (detect_2_Capt())
+	{
+	     stop();
+	     detectValon = true;
+	}
+        else if (detec_Capt_Droit())
         {
-            avance_Vitesse_Gauche(VITESSE_1);
+            avance_Vitesse_Gauche(VITESSE_0);
         }
         else if (detec_Capt_Gauche())
         {
-            avance_Vitesse_Droit(VITESSE_1);
+            avance_Vitesse_Droit(VITESSE_0);
         }
         else
         {
             cap = get_compas();
-            detectValon = not(avance_valon(cap));
+            avance_valon(cap);
         }
     } while (detectValon);
-    stop();
 }
 
 //Scénar 3
