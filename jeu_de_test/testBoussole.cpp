@@ -1,4 +1,4 @@
-/* File: tp8-ex1.cpp
+/* File:
  * Author: Philippe Latu
  * Source: https://github.com/platu/libsensehat-cpp
  *

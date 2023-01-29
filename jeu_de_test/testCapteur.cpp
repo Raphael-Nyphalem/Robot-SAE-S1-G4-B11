@@ -1,4 +1,4 @@
-/* File: robot_.cpp
+/* File: 
  * Authors: Timothée Burgmeier & Raphaël Louis Le Denmat
  * Source: https://github.com/Raphael-Nyphalem/Robot-SAE-S1-G4-B11
  *
