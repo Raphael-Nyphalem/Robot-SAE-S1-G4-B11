@@ -84,7 +84,7 @@ void suiviLigneCourbe()
     double cap;
    do
     {
-	if (detect_2_capt())
+	if (detect_2_Capt())
 	{
 	     stop();
 	     detectValon = true;
