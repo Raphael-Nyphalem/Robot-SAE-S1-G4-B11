@@ -30,9 +30,9 @@ int main()
 {
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Début variables
-	double compas, cap;
+	double compas, cap, oppo_cap;
 	double min,max;
-	bool inverse;
+	bool inverse,inverse_oppo;
 	int cpt;
 	string direction;
 	// Fin variables
@@ -49,6 +49,7 @@ int main()
 		{
 			compas = get_compas();
 			inverse = calcul_Min_Max(min,max,cap);
+			inverse_oppo = calcul_Inverse_Cap(cap,oppo_cap);
 			cout << "Orientation de : " << compas << " degrés." << endl;
 			if(detect_angle(cap))
 			{
@@ -60,7 +61,7 @@ int main()
 				cout << "Nous ne sommes pas dans le cap" << endl;
 				cout<<" le compas n'est pas entre "<< min <<" et "<< max <<endl;
 			}
-			cout<<"inverse ?: "<<inverse<<endl;
+			cout<<"inverse ?: "<<inverse<< " opposer cap ? "<<oppo_cap<<" "<<inverse_oppo <<endl;
 
 			sleep_for(milliseconds(200));
 		}
