@@ -2,7 +2,7 @@
 #ifndef SAES1_TRAJECT_HPP
 #define SAES1_TRAJECT_HPP
 
-#include "robotmove.hpp"
+
 
 namespace saeS1{
     const int MAX_FONCTIONS_TRAJET = 15;
