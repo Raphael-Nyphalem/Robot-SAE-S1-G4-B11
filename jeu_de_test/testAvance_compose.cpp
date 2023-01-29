@@ -39,6 +39,7 @@ void test_correcton_cap()
     {
         correction_angle(cap);
     } while (!(detect_temps(10,tps0)));
+    stop();
     cout << "Fin cas inverse (cap proche de 0) " <<endl;
     
     sleep_for(seconds(5));
@@ -52,6 +53,7 @@ void test_correcton_cap()
     {
         correction_angle(cap);
     } while (!(detect_temps(10,tps0)));
+    stop();
     cout << "Fin cas non-inverse cap entre 0 et 180 " <<endl;
 
     sleep_for(seconds(5));
@@ -64,6 +66,7 @@ void test_correcton_cap()
     {
         correction_angle(cap);
     } while (!(detect_temps(10,tps0)));
+    stop();
     cout << "Fin cas non-inverse cap entre 180 et 360 " <<endl;
 
     
